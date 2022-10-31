@@ -11,6 +11,7 @@ const export_parameters:=PoolStringArray([
 ])
 
 
+# TODO: support another background image (checkerboard, for example)
 func _ready():
 	randomize()
 

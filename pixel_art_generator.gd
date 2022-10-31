@@ -1,6 +1,10 @@
 class_name PixelArtGenerator
 extends Reference
 
+# TODO: support generation with specific color(s)
+# TODO: support complexity
+# TODO: support smoothness
+
 
 func random_generate(width:int,height:int)->Image:
 	var image:=Image.new()
