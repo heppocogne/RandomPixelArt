@@ -2,7 +2,7 @@ class_name PixelArtGenerator
 extends Reference
 
 
-func generate(width:int,height:int)->Image:
+func random_generate(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
 	image.lock()
@@ -13,7 +13,7 @@ func generate(width:int,height:int)->Image:
 	return image
 
 
-func generate_horizontal(width:int,height:int)->Image:
+func random_generate_horizontal(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
 	image.lock()

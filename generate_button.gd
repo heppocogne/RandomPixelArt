@@ -24,9 +24,9 @@ func _on_GenerateButton_pressed():
 	for i in count_spinbox.value:
 		var image:Image
 		if none_button.pressed:
-			image=pixel_art_generator.generate(width_edit.value,height_edit.value)
+			image=pixel_art_generator.random_generate(width_edit.value,height_edit.value)
 		elif horizontal_button.pressed:
-			image=pixel_art_generator.generate_horizontal(width_edit.value,height_edit.value)
+			image=pixel_art_generator.random_generate_horizontal(width_edit.value,height_edit.value)
 		var pixel_art_view:=_scene_pixel_art_view.instance()
 		var texture:=ImageTexture.new()
 		texture.create_from_image(image,3)
