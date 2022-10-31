@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "TextureRect",
+"class": "PixelArtView",
+"language": "GDScript",
+"path": "res://pixel_art_view/pixel_art_view.gd"
+} ]
+_global_script_class_icons={
+"PixelArtView": ""
+}
+
 [application]
 
 config/name="RandomPixelArt"
