@@ -6,20 +6,23 @@ const scale_min:=1.0/16
 const scale_max:=64.0
 var pixel_scale:=4.0
 var _old_pixle_scale:=pixel_scale
-var shift_pressed:=false
+var ctrl_pressed:=false
 
 
 func _input(event:InputEvent):
 	if event is InputEventKey:
 		var key:=event as InputEventKey
-		if key.scancode==KEY_SHIFT:
-			shift_pressed=key.pressed
-			scroll_vertical_enabled=!shift_pressed
+		if key.scancode==KEY_CONTROL:
+			ctrl_pressed=key.pressed
+			if key.pressed:
+				mouse_filter=Control.MOUSE_FILTER_IGNORE
+			else:
+				mouse_filter=Control.MOUSE_FILTER_PASS
 		return
 	
 	if event is InputEventMouseButton:
 		var mb:=event as InputEventMouseButton
-		if !mb.pressed or !shift_pressed:
+		if !mb.pressed or !ctrl_pressed:
 			return
 		
 		if mb.button_index==BUTTON_WHEEL_UP:
