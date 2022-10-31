@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://complexity_spin_box.gd" type="Script" id=1]
 [ext_resource path="res://complexity_h_slider.gd" type="Script" id=2]
 [ext_resource path="res://reset_button.gd" type="Script" id=3]
+[ext_resource path="res://symmetry_radio_button_group.tres" type="ButtonGroup" id=4]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -16,45 +17,63 @@ margin_bottom = 600.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Control" type="Control" parent="BackgroundPanel/HSplitContainer"]
-margin_right = 844.0
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/HSplitContainer"]
+margin_right = 874.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="GridContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 866.0
+margin_bottom = 592.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundPanel/HSplitContainer"]
-margin_left = 856.0
+margin_left = 886.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 161.0
+margin_right = 131.0
 margin_bottom = 593.0
 custom_constants/separation = 16
 
 [node name="GenerateButton" type="Button" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
-margin_right = 154.0
+margin_right = 124.0
 margin_bottom = 20.0
 text = "Generate"
 
-[node name="SizeEdit" type="GridContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
+[node name="Size" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
 margin_top = 36.0
-margin_right = 154.0
-margin_bottom = 88.0
+margin_right = 124.0
+margin_bottom = 106.0
+
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Size"]
+margin_right = 124.0
+margin_bottom = 14.0
+text = "Size:"
+
+[node name="Edit" type="GridContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Size"]
+margin_top = 18.0
+margin_right = 124.0
+margin_bottom = 70.0
 columns = 2
 
-[node name="WidthLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+[node name="WidthLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Size/Edit"]
 margin_top = 5.0
 margin_right = 46.0
 margin_bottom = 19.0
 text = "Width:"
 
-[node name="WidthEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+[node name="WidthEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Size/Edit"]
 margin_left = 50.0
 margin_right = 124.0
 margin_bottom = 24.0
@@ -62,13 +81,13 @@ min_value = 1.0
 max_value = 256.0
 value = 16.0
 
-[node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+[node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Size/Edit"]
 margin_top = 33.0
 margin_right = 46.0
 margin_bottom = 47.0
 text = "Height:"
 
-[node name="HeightEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+[node name="HeightEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Size/Edit"]
 margin_left = 50.0
 margin_top = 28.0
 margin_right = 124.0
@@ -77,10 +96,43 @@ min_value = 1.0
 max_value = 256.0
 value = 16.0
 
+[node name="Symmetry" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
+margin_top = 122.0
+margin_right = 124.0
+margin_bottom = 220.0
+
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Symmetry"]
+margin_right = 124.0
+margin_bottom = 14.0
+text = "Symmetry:"
+
+[node name="None" type="CheckBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Symmetry"]
+margin_top = 18.0
+margin_right = 124.0
+margin_bottom = 42.0
+pressed = true
+group = ExtResource( 4 )
+text = "None"
+
+[node name="Horizontal" type="CheckBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Symmetry"]
+margin_top = 46.0
+margin_right = 124.0
+margin_bottom = 70.0
+group = ExtResource( 4 )
+text = "Horizontal"
+
+[node name="Diagonal" type="CheckBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/Symmetry"]
+margin_top = 74.0
+margin_right = 124.0
+margin_bottom = 98.0
+group = ExtResource( 4 )
+text = "Diagonal"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
-margin_top = 104.0
+visible = false
+margin_top = 120.0
 margin_right = 154.0
-margin_bottom = 148.0
+margin_bottom = 164.0
 
 [node name="ComplexityEdit" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
 margin_right = 154.0
@@ -113,12 +165,11 @@ value = 1.0
 script = ExtResource( 2 )
 
 [node name="ResetButton" type="Button" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
-margin_top = 164.0
-margin_right = 154.0
-margin_bottom = 184.0
+margin_top = 236.0
+margin_right = 124.0
+margin_bottom = 256.0
 text = "Reset"
 script = ExtResource( 3 )
-target_pathes = [ "BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit/WidthEdit:value", "BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit/HeightEdit:value", "BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox:value" ]
 
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/ResetButton" method="_on_Main_ready"]
 [connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_changed"]
