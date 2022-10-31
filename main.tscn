@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://complexity_spin_box.gd" type="Script" id=1]
 [ext_resource path="res://complexity_h_slider.gd" type="Script" id=2]
 [ext_resource path="res://reset_button.gd" type="Script" id=3]
 [ext_resource path="res://symmetry_radio_button_group.tres" type="ButtonGroup" id=4]
+[ext_resource path="res://pixel_arts_container.gd" type="Script" id=5]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -26,13 +27,14 @@ custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer"]
+[node name="PixelArtsContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 858.0
 margin_bottom = 592.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
+script = ExtResource( 5 )
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundPanel/HSplitContainer"]
 margin_left = 878.0
