@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://complexity_spin_box.gd" type="Script" id=1]
 [ext_resource path="res://complexity_h_slider.gd" type="Script" id=2]
 [ext_resource path="res://reset_button.gd" type="Script" id=3]
 [ext_resource path="res://symmetry_radio_button_group.tres" type="ButtonGroup" id=4]
 [ext_resource path="res://pixel_arts_container.gd" type="Script" id=5]
+[ext_resource path="res://scroll_container.gd" type="Script" id=6]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -32,6 +33,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 858.0
 margin_bottom = 592.0
+script = ExtResource( 6 )
 
 [node name="PixelArtsContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer"]
 custom_constants/vseparation = 8
@@ -65,10 +67,29 @@ margin_right = 124.0
 margin_bottom = 20.0
 text = "Generate"
 
-[node name="Size" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Count" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 36.0
 margin_right = 124.0
-margin_bottom = 106.0
+margin_bottom = 60.0
+
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Count"]
+margin_top = 5.0
+margin_right = 41.0
+margin_bottom = 19.0
+text = "Count:"
+
+[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Count"]
+margin_left = 45.0
+margin_right = 119.0
+margin_bottom = 24.0
+min_value = 16.0
+value = 16.0
+allow_greater = true
+
+[node name="Size" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 124.0
+margin_bottom = 146.0
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size"]
 margin_right = 124.0
@@ -94,6 +115,7 @@ margin_bottom = 24.0
 min_value = 1.0
 max_value = 256.0
 value = 16.0
+exp_edit = true
 
 [node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit"]
 margin_top = 33.0
@@ -109,11 +131,12 @@ margin_bottom = 52.0
 min_value = 1.0
 max_value = 256.0
 value = 16.0
+exp_edit = true
 
 [node name="Symmetry" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 122.0
+margin_top = 162.0
 margin_right = 124.0
-margin_bottom = 220.0
+margin_bottom = 260.0
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry"]
 margin_right = 124.0
@@ -179,9 +202,9 @@ value = 1.0
 script = ExtResource( 2 )
 
 [node name="ResetButton" type="Button" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 236.0
+margin_top = 276.0
 margin_right = 124.0
-margin_bottom = 256.0
+margin_bottom = 296.0
 text = "Reset"
 script = ExtResource( 3 )
 
