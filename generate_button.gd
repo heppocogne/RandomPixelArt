@@ -10,6 +10,7 @@ onready var width_edit:SpinBox=$"../Size/Edit/WidthEdit"
 onready var height_edit:SpinBox=$"../Size/Edit/HeightEdit"
 onready var none_button:CheckBox=$"../Symmetry/None"
 onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
+onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
 
 
 func _init():
@@ -27,6 +28,8 @@ func _on_GenerateButton_pressed():
 			image=pixel_art_generator.random_generate(width_edit.value,height_edit.value)
 		elif horizontal_button.pressed:
 			image=pixel_art_generator.random_generate_horizontal(width_edit.value,height_edit.value)
+		elif diagonal_button.pressed:
+			image=pixel_art_generator.random_generate_diagonal(width_edit.value,height_edit.value)
 		var pixel_art_view:=_scene_pixel_art_view.instance()
 		var texture:=ImageTexture.new()
 		texture.create_from_image(image,3)

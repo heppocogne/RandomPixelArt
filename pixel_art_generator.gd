@@ -26,3 +26,21 @@ func random_generate_horizontal(width:int,height:int)->Image:
 			image.set_pixel(width/2+1,y,Color(randf(),randf(),randf(),randf()))
 	image.unlock()
 	return image
+
+
+func random_generate_diagonal(width:int,height:int)->Image:
+	if width!=height:
+		var s:int=min(width,height)
+		return random_generate_diagonal(s,s)
+	
+	var image:=Image.new()
+	image.create(width,height,false,Image.FORMAT_RGBA8)
+	image.lock()
+	for y in height:
+		for x in y:
+			var c:=Color(randf(),randf(),randf(),randf())
+			image.set_pixel(x,y,c)
+			image.set_pixel(y,x,c)
+		image.set_pixel(y,y,Color(randf(),randf(),randf(),randf()))
+	image.unlock()
+	return image
