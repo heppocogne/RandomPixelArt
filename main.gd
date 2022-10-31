@@ -11,6 +11,10 @@ const export_parameters:=PoolStringArray([
 ])
 
 
+func _ready():
+	randomize()
+
+
 func get_node_property(path:String):
 	var colon_index:int=path.find(":")
 	var node:Node=get_node(path.left(colon_index))
