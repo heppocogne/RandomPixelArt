@@ -208,8 +208,8 @@ margin_bottom = 296.0
 text = "Reset"
 script = ExtResource( 3 )
 
-[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized"]
-[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready"]
+[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized" flags=6]
+[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready" flags=6]
 [connection signal="pixel_scale_changed" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_ScrollContainer_pixel_scale_changed"]
 [connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized"]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit/WidthEdit" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_WidthEdit_value_changed"]
