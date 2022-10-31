@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "PixelArtGenerator",
+"language": "GDScript",
+"path": "res://pixel_art_generator.gd"
+}, {
 "base": "TextureRect",
 "class": "PixelArtView",
 "language": "GDScript",
 "path": "res://pixel_art_view/pixel_art_view.gd"
 } ]
 _global_script_class_icons={
+"PixelArtGenerator": "",
 "PixelArtView": ""
 }
 
