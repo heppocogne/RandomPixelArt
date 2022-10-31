@@ -1,4 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://complexity_spin_box.gd" type="Script" id=1]
+[ext_resource path="res://complexity_h_slider.gd" type="Script" id=2]
+[ext_resource path="res://reset_button.gd" type="Script" id=3]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -13,9 +17,112 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Control" type="Control" parent="BackgroundPanel/HSplitContainer"]
+margin_right = 844.0
 margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundPanel/HSplitContainer"]
-margin_left = 12.0
+margin_left = 856.0
 margin_right = 1024.0
 margin_bottom = 600.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 161.0
+margin_bottom = 593.0
+custom_constants/separation = 16
+
+[node name="GenerateButton" type="Button" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
+margin_right = 154.0
+margin_bottom = 20.0
+text = "Generate"
+
+[node name="SizeEdit" type="GridContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 154.0
+margin_bottom = 88.0
+columns = 2
+
+[node name="WidthLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+margin_top = 5.0
+margin_right = 46.0
+margin_bottom = 19.0
+text = "Width:"
+
+[node name="WidthEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+margin_left = 50.0
+margin_right = 124.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 256.0
+value = 16.0
+
+[node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+margin_top = 33.0
+margin_right = 46.0
+margin_bottom = 47.0
+text = "Height:"
+
+[node name="HeightEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit"]
+margin_left = 50.0
+margin_top = 28.0
+margin_right = 124.0
+margin_bottom = 52.0
+min_value = 1.0
+max_value = 256.0
+value = 16.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 154.0
+margin_bottom = 148.0
+
+[node name="ComplexityEdit" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_right = 154.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit"]
+margin_top = 5.0
+margin_right = 76.0
+margin_bottom = 19.0
+text = "Complexity:"
+
+[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit"]
+margin_left = 80.0
+margin_right = 154.0
+margin_bottom = 24.0
+min_value = 0.01
+max_value = 10.0
+step = 0.1
+value = 1.0
+script = ExtResource( 1 )
+
+[node name="HSlider" type="HSlider" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 154.0
+margin_bottom = 44.0
+min_value = 0.01
+max_value = 10.0
+step = 0.1
+value = 1.0
+script = ExtResource( 2 )
+
+[node name="ResetButton" type="Button" parent="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 154.0
+margin_bottom = 184.0
+text = "Reset"
+script = ExtResource( 3 )
+target_pathes = [ "BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit/WidthEdit:value", "BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/SizeEdit/HeightEdit:value", "BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox:value" ]
+
+[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/ResetButton" method="_on_Main_ready"]
+[connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_value_changed"]
+[connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" method="_on_HSlider_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/ResetButton" to="BackgroundPanel/HSplitContainer/PanelContainer/VBoxContainer/ResetButton" method="_on_ResetButton_pressed"]
