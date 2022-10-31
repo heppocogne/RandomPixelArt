@@ -183,7 +183,10 @@ margin_bottom = 256.0
 text = "Reset"
 script = ExtResource( 3 )
 
+[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/PixelArtsContainer" method="_update_columns"]
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready"]
+[connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/PixelArtsContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/PixelArtsContainer" method="_update_columns"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit/WidthEdit" to="BackgroundPanel/HSplitContainer/MarginContainer/PixelArtsContainer" method="_on_WidthEdit_value_changed"]
 [connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_changed"]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_value_changed"]
 [connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" method="_on_HSlider_changed"]
