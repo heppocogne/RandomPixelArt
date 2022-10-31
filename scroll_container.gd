@@ -21,11 +21,13 @@ func _input(event:InputEvent):
 		var mb:=event as InputEventMouseButton
 		if !mb.pressed or !shift_pressed:
 			return
+		
 		if mb.button_index==BUTTON_WHEEL_UP:
+			_old_pixle_scale=pixel_scale
 			pixel_scale=min(scale_max,pixel_scale*2.0)
 		elif mb.button_index==BUTTON_WHEEL_DOWN:
+			_old_pixle_scale=pixel_scale
 			pixel_scale=max(scale_min,pixel_scale/2.0)
 		if pixel_scale!=_old_pixle_scale:
 			emit_signal("pixel_scale_changed",pixel_scale)
-			_old_pixle_scale=pixel_scale
 		return
