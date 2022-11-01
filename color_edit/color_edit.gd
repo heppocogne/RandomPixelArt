@@ -2,6 +2,10 @@ tool
 class_name ColorEdit
 extends HBoxContainer
 
+signal remove_button_pressed(ref_self)
+
+export var removable:=true setget set_removable
+
 func set_window_title(title:String):
 	$ColorRect/WindowDialog.window_title=title
 
@@ -12,3 +16,12 @@ func get_rect_color()->Color:
 
 func get_weight()->float:
 	return $SpinBox.value
+
+
+func set_removable(r:bool):
+	removable=r
+	$CenterContainer/RemoveButton.visible=r
+
+
+func _on_RemoveButton_pressed():
+	emit_signal("remove_button_pressed",self)
