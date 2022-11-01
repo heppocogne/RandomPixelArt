@@ -48,3 +48,14 @@ func random_generate_diagonal(width:int,height:int)->Image:
 		image.set_pixel(y,y,Color(randf(),randf(),randf(),randf()))
 	image.unlock()
 	return image
+
+
+func perlin_generate(width:int,height:int)->Image:
+	var image:=Image.new()
+	image.create(width,height,false,Image.FORMAT_RGBA8)
+	image.lock()
+	for y in height:
+		for x in width:
+			pass
+	image.unlock()
+	return image
