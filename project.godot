@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "HBoxContainer",
+"class": "ColorEdit",
+"language": "GDScript",
+"path": "res://color_edit/color_edit.gd"
+}, {
 "base": "Reference",
 "class": "PixelArtGenerator",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://pixel_art_view/pixel_art_view.gd"
 } ]
 _global_script_class_icons={
+"ColorEdit": "",
 "PixelArtGenerator": "",
 "PixelArtView": ""
 }
