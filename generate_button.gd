@@ -20,7 +20,7 @@ func _init():
 func _on_GenerateButton_pressed():
 	for p in pixel_art_container.pixel_arts:
 		p.queue_free()
-	pixel_art_container.pixel_arts=[]
+	pixel_art_container.pixel_arts.clear()
 	var texture_rect_size:Vector2=pixel_art_container.get_parent().pixel_scale*Vector2(width_edit.value,height_edit.value)
 	for i in count_spinbox.value:
 		var image:Image
