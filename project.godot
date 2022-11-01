@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PixelArtGenerator",
 "language": "GDScript",
-"path": "res://pixel_art_generator.gd"
+"path": "res://main/pixel_art_generator.gd"
 }, {
 "base": "TextureRect",
 "class": "PixelArtView",
@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="RandomPixelArt"
-run/main_scene="res://main.tscn"
+run/main_scene="res://main/main.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]

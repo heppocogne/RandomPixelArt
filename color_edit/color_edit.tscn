@@ -3,7 +3,7 @@
 [ext_resource path="res://color_edit/color_edit.gd" type="Script" id=1]
 [ext_resource path="res://color_edit/color_rect.gd" type="Script" id=2]
 [ext_resource path="res://color_edit/color_picker_window.gd" type="Script" id=3]
-[ext_resource path="res://remove_icon.exr" type="Texture" id=4]
+[ext_resource path="res://color_edit/remove_icon.exr" type="Texture" id=4]
 
 [node name="ColorEdit" type="HBoxContainer"]
 margin_right = 93.0
@@ -36,10 +36,10 @@ margin_bottom = 470.0
 script = ExtResource( 3 )
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorRect/WindowDialog"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 316.0
-margin_bottom = 470.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 324.0
+margin_bottom = 478.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_left = 175.0
