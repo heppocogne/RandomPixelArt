@@ -12,6 +12,7 @@ const export_parameters:=PoolStringArray([
 
 
 # TODO: support another background image (checkerboard, for example)
+# TODO: support keep_aspect_ratio
 func _ready():
 	randomize()
 

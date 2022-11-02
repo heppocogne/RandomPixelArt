@@ -4,6 +4,7 @@ extends Reference
 # TODO: support generation with specific color(s)
 # TODO: support complexity
 # TODO: support smoothness
+# TODO: remove random_generate*()
 
 
 func random_generate(width:int,height:int)->Image:
