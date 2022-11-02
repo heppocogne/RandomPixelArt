@@ -12,7 +12,6 @@ const export_parameters:=PoolStringArray([
 ])
 
 
-# TODO: support another background image (checkerboard, for example)
 # TODO: support keep_aspect_ratio
 # TODO: support hot reload
 # TODO: add icons to "Hrizontal" and "Diagonal"
@@ -30,3 +29,7 @@ func set_node_property(path:String, val):
 	var colon_index:int=path.find(":")
 	var node:Node=get_node(path.left(colon_index))
 	node.set_indexed(path.right(colon_index), val)
+
+
+func _on_change_background_requested(tex:Texture):
+	$BackgroundPanel.get_stylebox("panel").texture=tex

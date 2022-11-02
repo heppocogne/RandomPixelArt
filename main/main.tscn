@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://color_edit/color_edit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/main.gd" type="Script" id=2]
@@ -11,8 +11,15 @@
 [ext_resource path="res://main/simplicity_spin_box.gd" type="Script" id=9]
 [ext_resource path="res://main/generate_button.gd" type="Script" id=10]
 [ext_resource path="res://main/add_icon.exr" type="Texture" id=11]
-[ext_resource path="res://main/darkestblue_pixel.png" type="Texture" id=12]
+[ext_resource path="res://main/background_texture_button/background_texture_button.tscn" type="PackedScene" id=12]
 [ext_resource path="res://main/checkerboard32x32.png" type="Texture" id=13]
+[ext_resource path="res://main/darkestblue_pixel.png" type="Texture" id=14]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 1, 1 )
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -22,6 +29,7 @@ script = ExtResource( 2 )
 [node name="BackgroundPanel" type="Panel" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
+custom_styles/panel = SubResource( 1 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanel"]
 anchor_right = 1.0
@@ -257,19 +265,13 @@ margin_right = 78.0
 margin_bottom = 23.0
 text = "Background:"
 
-[node name="PanelTexture" type="TextureRect" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
-margin_left = 82.0
-margin_right = 114.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-texture = ExtResource( 12 )
-expand = true
+[node name="PanelTextureButton" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource( 12 )]
+texture_normal = ExtResource( 14 )
 
-[node name="CheckerboardTexture" type="TextureRect" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
+[node name="CheckerboardTextureButton" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource( 12 )]
 margin_left = 118.0
 margin_right = 150.0
-margin_bottom = 32.0
-texture = ExtResource( 13 )
+texture_normal = ExtResource( 13 )
 
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized" flags=6]
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready" flags=6]
@@ -283,3 +285,5 @@ texture = ExtResource( 13 )
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/Edit/SpinBox" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Colors/AddButton" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Colors" method="_on_AddButton_pressed"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_ResetButton_pressed"]
+[connection signal="change_background_request" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background/PanelTextureButton" to="." method="_on_change_background_requested"]
+[connection signal="change_background_request" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background/CheckerboardTextureButton" to="." method="_on_change_background_requested"]
