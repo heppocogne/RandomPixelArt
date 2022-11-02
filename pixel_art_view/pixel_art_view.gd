@@ -1,7 +1,6 @@
 class_name PixelArtView
 extends TextureRect
 
-# TODO: add selection indicator
 
 var context_menu:PopupMenu
 var noises:Array
@@ -27,3 +26,15 @@ func _on_FileDialog_file_selected(path:String):
 		save_error=img.save_exr(path)
 	elif path.ends_with(".tres") or path.ends_with(".res"):
 		save_error=ResourceSaver.save(path,img)
+
+
+func _on_PixelArtView_resized():
+	$SelectionIndicator.rect_size=rect_size
+
+
+func _on_PixelArtView_mouse_entered():
+	$SelectionIndicator.visible=true
+
+
+func _on_PixelArtView_mouse_exited():
+	$SelectionIndicator.visible=false
