@@ -15,6 +15,8 @@ const export_parameters:=PoolStringArray([
 # TODO: support keep_aspect_ratio
 # TODO: support hot reload
 # TODO: add icons to "Hrizontal" and "Diagonal"
+# TODO: support command-line arguments
+# TODO: allow larger image size, simplicity and smaller simplicity
 func _ready():
 	randomize()
 

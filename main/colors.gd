@@ -7,6 +7,7 @@ var color_parameters:Array setget set_color_parameters,get_color_parameters
 var color_rects:Array
 
 
+# TODO: add simplicity argument for each colors
 func _init():
 	color_parameters=[]
 	color_rects=[]
