@@ -43,6 +43,10 @@ run/main_scene="res://main/main.tscn"
 boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.png"
 
+[editor]
+
+convert_text_resources_to_binary_on_export=true
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/editor_icon_exporter/plugin.cfg", "res://addons/editor_icon_previewer/plugin.cfg" )
