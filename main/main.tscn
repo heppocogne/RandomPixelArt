@@ -27,8 +27,8 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="BackgroundPanel" type="Panel" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanel"]
