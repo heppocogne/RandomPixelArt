@@ -178,46 +178,45 @@ margin_bottom = 98.0
 group = ExtResource( 5 )
 text = "Diagonal"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 120.0
-margin_right = 154.0
-margin_bottom = 164.0
+[node name="Complexity" type="GridContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 276.0
+margin_right = 191.0
+margin_bottom = 320.0
 
-[node name="ComplexityEdit" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Edit" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity"]
 margin_right = 154.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit"]
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/Edit"]
 margin_top = 5.0
 margin_right = 76.0
 margin_bottom = 19.0
 text = "Complexity:"
 
-[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit"]
+[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/Edit"]
 margin_left = 80.0
 margin_right = 154.0
 margin_bottom = 24.0
-min_value = 0.01
-max_value = 10.0
+min_value = 0.1
+max_value = 32.0
 step = 0.1
 value = 1.0
 script = ExtResource( 9 )
 
-[node name="HSlider" type="HSlider" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity"]
 margin_top = 28.0
 margin_right = 154.0
 margin_bottom = 44.0
-min_value = 0.01
-max_value = 10.0
+min_value = 0.1
+max_value = 32.0
 step = 0.1
 value = 1.0
 script = ExtResource( 6 )
 
 [node name="Colors" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 276.0
+margin_top = 336.0
 margin_right = 191.0
-margin_bottom = 344.0
+margin_bottom = 404.0
 script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Colors"]
@@ -239,9 +238,9 @@ text = "Add new color"
 icon = ExtResource( 11 )
 
 [node name="ResetButton" type="Button" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 360.0
+margin_top = 420.0
 margin_right = 191.0
-margin_bottom = 380.0
+margin_bottom = 440.0
 text = "Reset"
 script = ExtResource( 3 )
 
@@ -251,8 +250,8 @@ script = ExtResource( 3 )
 [connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized"]
 [connection signal="column_update_request" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_update_columns"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" method="_on_GenerateButton_pressed"]
-[connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_changed"]
-[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_value_changed"]
-[connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" method="_on_HSlider_changed"]
-[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" method="_on_HSlider_value_changed"]
+[connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/HSlider" method="_on_SpinBox_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/HSlider" method="_on_SpinBox_value_changed"]
+[connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/Edit/SpinBox" method="_on_HSlider_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Complexity/Edit/SpinBox" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_ResetButton_pressed"]
