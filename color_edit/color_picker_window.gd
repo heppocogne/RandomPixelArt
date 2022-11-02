@@ -1,6 +1,9 @@
 extends WindowDialog
 
-const size_ext:=Vector2(8,8)
+const size_ext:=Vector2(16,16)
+
+func _ready():
+	$ColorPicker.rect_position=Vector2(8,8)
 
 
 func _on_ColorPicker_resized():

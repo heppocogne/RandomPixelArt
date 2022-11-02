@@ -36,10 +36,10 @@ margin_bottom = 470.0
 script = ExtResource( 3 )
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorRect/WindowDialog"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 328.0
-margin_bottom = 482.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 316.0
+margin_bottom = 470.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_left = 175.0
