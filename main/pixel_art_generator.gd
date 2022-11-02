@@ -1,9 +1,9 @@
 class_name PixelArtGenerator
 extends Reference
 
-# TODO: support generation with specific color(s)
-# TODO: support complexity
-# TODO: support smoothness
+# TODO: support generation with multiple colors
+# TODO: support perlin_generate_horizontal
+# TODO: support perlin_generate_diagonal
 # TODO: remove random_generate*()
 
 class _PoolGrayImage:

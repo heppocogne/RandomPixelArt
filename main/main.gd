@@ -13,6 +13,8 @@ const export_parameters:=PoolStringArray([
 
 # TODO: support another background image (checkerboard, for example)
 # TODO: support keep_aspect_ratio
+# TODO: support hot reload
+# TODO: add icons to "Hrizontal" and "Diagonal"
 func _ready():
 	randomize()
 
