@@ -13,6 +13,8 @@ onready var height_edit:SpinBox=$"../Size/MarginContainer/Edit/HeightEdit"
 onready var none_button:CheckBox=$"../Symmetry/None"
 onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
 onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
+onready var complexity_edit:SpinBox=$"../Simplicity/Edit/SpinBox"
+onready var colors:VBoxContainer=$"../Colors"
 
 
 func _init():
@@ -27,13 +29,19 @@ func _on_GenerateButton_pressed():
 	var texture_rect_size:Vector2=pixel_art_container.get_parent().pixel_scale*Vector2(width_edit.value,height_edit.value)
 	for i in count_spinbox.value:
 		var image:Image
+		var pixel_art_view:=_scene_pixel_art_view.instance()
+		var color_params:Array=colors.get_color_parameters()
+		for _i in color_params.size():
+			var noise:=OpenSimplexNoise.new()
+			noise.seed=randi()
+			noise.period=complexity_edit.value
+			pixel_art_view.noises.push_back(noise)
 		if none_button.pressed:
-			image=pixel_art_generator.random_generate(width_edit.value,height_edit.value)
+			image=pixel_art_generator.perlin_generate(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		elif horizontal_button.pressed:
 			image=pixel_art_generator.random_generate_horizontal(width_edit.value,height_edit.value)
 		elif diagonal_button.pressed:
 			image=pixel_art_generator.random_generate_diagonal(width_edit.value,height_edit.value)
-		var pixel_art_view:=_scene_pixel_art_view.instance()
 		var texture:=ImageTexture.new()
 		texture.create_from_image(image,3)
 		pixel_art_view.texture=texture
