@@ -41,7 +41,7 @@ margin_right = 791.0
 margin_bottom = 592.0
 script = ExtResource( 8 )
 
-[node name="PixelArtsContainer" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer"]
+[node name="PixelArts" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer"]
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 script = ExtResource( 4 )
@@ -244,11 +244,11 @@ margin_bottom = 440.0
 text = "Reset"
 script = ExtResource( 3 )
 
-[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized" flags=6]
+[connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized" flags=6]
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready" flags=6]
-[connection signal="pixel_scale_changed" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_ScrollContainer_pixel_scale_changed"]
-[connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized"]
-[connection signal="column_update_request" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_update_columns"]
+[connection signal="pixel_scale_changed" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_ScrollContainer_pixel_scale_changed"]
+[connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized"]
+[connection signal="column_update_request" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_update_columns"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" method="_on_GenerateButton_pressed"]
 [connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/HSlider" method="_on_SpinBox_changed"]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/HSlider" method="_on_SpinBox_value_changed"]

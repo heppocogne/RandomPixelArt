@@ -6,7 +6,7 @@ const _scene_pixel_art_view:PackedScene=preload("res://pixel_art_view/pixel_art_
 
 var pixel_art_generator:PixelArtGenerator
 
-onready var pixel_art_container:GridContainer=$"../../../../MarginContainer/ScrollContainer/PixelArtsContainer"
+onready var pixel_art_container:GridContainer=$"../../../../MarginContainer/ScrollContainer/PixelArts"
 onready var count_spinbox:SpinBox=$"../Quantity/SpinBox"
 onready var width_edit:SpinBox=$"../Size/MarginContainer/Edit/WidthEdit"
 onready var height_edit:SpinBox=$"../Size/MarginContainer/Edit/HeightEdit"
