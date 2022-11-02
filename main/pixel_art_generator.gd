@@ -1,7 +1,6 @@
 class_name PixelArtGenerator
 extends Reference
 
-# TODO: support perlin_generate_horizontal
 # TODO: support perlin_generate_diagonal
 # TODO: remove random_generate*()
 
@@ -70,17 +69,6 @@ class _PoolGrayImage:
 		return PoolByteArray([min_value,max_value])
 	
 	
-	func to_image()->Image:
-		var i:=Image.new()
-		i.lock()
-		for y in height:
-			for x in width:
-				var p:=get_pixel(x,y)
-				i.set_pixel(x,y,Color8(p,p,p))
-		i.unlock()
-		return i
-	
-	
 	func get_binary(thresh:int)->_PoolGrayImage:
 		var result:=_PoolGrayImage.new()
 		result.width=width
@@ -95,7 +83,7 @@ class _PoolGrayImage:
 		return result
 	
 	
-	func histogram()->PoolByteArray:
+	func get_histogram()->PoolByteArray:
 		var hg:=PoolByteArray()
 		hg.resize(256)
 		hg.fill(0)
@@ -103,6 +91,66 @@ class _PoolGrayImage:
 			hg[v]+=1
 		
 		return hg
+
+
+class _PoolGrayImageHorizontal:
+	extends _PoolGrayImage
+	
+	func create_from_image(image:Image,normalize:=false):
+		assert(image and image.get_format()==Image.FORMAT_L8)
+		width=image.get_width()
+		height=image.get_height()
+		assert(0<width and 0<height)
+		data=PoolByteArray()
+		image.lock()
+		for y in height:
+			for x in width/2:
+				# r=g=b, a=1
+				data.append(image.get_pixel(x,y).r8)
+			if width%2:
+				data.append(image.get_pixel(width/2,y).r8)
+		image.unlock()
+		
+		if normalize:
+			var value_range:=get_value_range()
+			for i in data.size():
+				data[i]=range_lerp(data[i],value_range[0],value_range[1],0,255)
+	
+	
+	func index(x:int,y:int)->int:
+		assert(0<=x and x<width)
+		assert(0<=y and y<height)
+		var half:int=ceil(width/2.0)
+		if x<half:
+			return y*half+x
+		else:
+			return y*half+(width-x-1)
+	
+	
+	func get_histogram()->PoolByteArray:
+		var hg:=PoolByteArray()
+		hg.resize(256)
+		hg.fill(0)
+		for v in data:
+			hg[v]+=2
+		if width%2:
+			for y in height:
+				hg[get_pixel(width/2,y)]-=1
+		return hg
+	
+	
+	func get_binary(thresh:int)->_PoolGrayImage:
+		var result:=_PoolGrayImageHorizontal.new()
+		result.width=width
+		result.height=height
+		var bin_data:=PoolByteArray()
+		for v in data:
+			if thresh<=v:
+				bin_data.append(255)
+			else:
+				bin_data.append(0)
+		result.data=bin_data
+		return result
 
 
 func random_generate(width:int,height:int)->Image:
@@ -164,11 +212,12 @@ func perlin_generate(width:int,height:int,noises:Array,color_params:Array)->Imag
 		if weight==0:
 			thresh=256
 		else:
-			var hs:=pgi.histogram()
+			var hs:=pgi.get_histogram()
 			var count:=0
+			var pixels:=width*height
 			for t in range(255,-1,-1):	# 255,254,...,1,0
 				count+=hs[t]
-				if weight<=100.0*count/pgi.data.size():
+				if weight<=100.0*count/pixels:
 					thresh=t
 					break
 		var bin:=pgi.get_binary(thresh)
@@ -177,5 +226,41 @@ func perlin_generate(width:int,height:int,noises:Array,color_params:Array)->Imag
 			for x in width:
 				if bin.get_pixel(x,y):
 					image.set_pixel(x,y,color)
+	image.unlock()
+	return image
+
+
+func perlin_generate_horizontal(width:int,height:int,noises:Array,color_params:Array)->Image:
+	var image:=Image.new()
+	image.create(width,height,false,Image.FORMAT_RGBA8)
+	image.lock()
+	for i in color_params.size():
+		var n:OpenSimplexNoise=noises[i]
+		var color:Color=color_params[i][0]
+		var weight:int=color_params[i][1]
+		var pgih:=_PoolGrayImageHorizontal.new()
+		pgih.create_from_image(n.get_image(width,height),true)
+		
+		var thresh:int=0
+		if weight==0:
+			thresh=256
+		else:
+			var hs:=pgih.get_histogram()
+			var count:=0
+			var pixels:=width*height
+			for t in range(255,-1,-1):	# 255,254,...,1,0
+				count+=hs[t]
+				if weight<=100.0*count/pixels:
+					thresh=t
+					break
+		var bin:=pgih.get_binary(thresh)
+#
+		for y in height:
+			for x in width/2:
+				if bin.get_pixel(x,y):
+					image.set_pixel(x,y,color)
+					image.set_pixel(width-x-1,y,color)
+			if width%2 and bin.get_pixel(width/2,y):
+				image.set_pixel(width/2,y,color)
 	image.unlock()
 	return image
