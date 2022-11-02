@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://color_edit/color_edit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/main.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://main/simplicity_spin_box.gd" type="Script" id=9]
 [ext_resource path="res://main/generate_button.gd" type="Script" id=10]
 [ext_resource path="res://main/add_icon.exr" type="Texture" id=11]
+[ext_resource path="res://main/darkestblue_pixel.png" type="Texture" id=12]
+[ext_resource path="res://main/checkerboard32x32.png" type="Texture" id=13]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -243,6 +245,31 @@ margin_right = 191.0
 margin_bottom = 440.0
 text = "Reset"
 script = ExtResource( 3 )
+
+[node name="Background" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 456.0
+margin_right = 191.0
+margin_bottom = 488.0
+
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
+margin_top = 9.0
+margin_right = 78.0
+margin_bottom = 23.0
+text = "Background:"
+
+[node name="PanelTexture" type="TextureRect" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
+margin_left = 82.0
+margin_right = 114.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 12 )
+expand = true
+
+[node name="CheckerboardTexture" type="TextureRect" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
+margin_left = 118.0
+margin_right = 150.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
 
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized" flags=6]
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready" flags=6]
