@@ -14,8 +14,16 @@ func get_rect_color()->Color:
 	return $ColorRect.color
 
 
+func set_rect_color(c:Color):
+	$ColorRect.color=c
+
+
 func get_weight()->int:
 	return int($SpinBox.value)
+
+
+func set_weight(w:int):
+	$SpinBox.value=w
 
 
 func set_removable(r:bool):
