@@ -103,19 +103,25 @@ margin_right = 191.0
 margin_bottom = 14.0
 text = "Size:"
 
-[node name="Edit" type="GridContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size"]
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size"]
 margin_top = 18.0
 margin_right = 191.0
 margin_bottom = 70.0
+custom_constants/margin_left = 16
+
+[node name="Edit" type="GridContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer"]
+margin_left = 16.0
+margin_right = 191.0
+margin_bottom = 52.0
 columns = 2
 
-[node name="WidthLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit"]
+[node name="WidthLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit"]
 margin_top = 5.0
 margin_right = 46.0
 margin_bottom = 19.0
 text = "Width:"
 
-[node name="WidthEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit"]
+[node name="WidthEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit"]
 margin_left = 50.0
 margin_right = 124.0
 margin_bottom = 24.0
@@ -124,13 +130,13 @@ max_value = 256.0
 value = 16.0
 exp_edit = true
 
-[node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit"]
+[node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit"]
 margin_top = 33.0
 margin_right = 46.0
 margin_bottom = 47.0
 text = "Height:"
 
-[node name="HeightEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit"]
+[node name="HeightEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit"]
 margin_left = 50.0
 margin_top = 28.0
 margin_right = 124.0
@@ -244,7 +250,7 @@ script = ExtResource( 3 )
 [connection signal="pixel_scale_changed" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_ScrollContainer_pixel_scale_changed"]
 [connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_PixelArtsContainer_resized"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" method="_on_GenerateButton_pressed"]
-[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/Edit/WidthEdit" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_WidthEdit_value_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit/WidthEdit" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArtsContainer" method="_on_WidthEdit_value_changed"]
 [connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_changed"]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" method="_on_SpinBox_value_changed"]
 [connection signal="changed" from="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HSlider" to="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ComplexityEdit/SpinBox" method="_on_HSlider_changed"]

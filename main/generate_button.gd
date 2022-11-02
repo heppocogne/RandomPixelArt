@@ -6,8 +6,8 @@ var pixel_art_generator:PixelArtGenerator
 
 onready var pixel_art_container:GridContainer=$"../../../../MarginContainer/ScrollContainer/PixelArtsContainer"
 onready var count_spinbox:SpinBox=$"../Count/SpinBox"
-onready var width_edit:SpinBox=$"../Size/Edit/WidthEdit"
-onready var height_edit:SpinBox=$"../Size/Edit/HeightEdit"
+onready var width_edit:SpinBox=$"../Size/MarginContainer/Edit/WidthEdit"
+onready var height_edit:SpinBox=$"../Size/MarginContainer/Edit/HeightEdit"
 onready var none_button:CheckBox=$"../Symmetry/None"
 onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
 onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"

@@ -5,7 +5,7 @@ var h_separation:int=get_constant("hseparation")
 
 var pixel_arts:Array
 
-onready var width_edit:SpinBox=$"../../../PanelContainer/MarginContainer/VBoxContainer/Size/Edit/WidthEdit"
+onready var width_edit:SpinBox=$"../../../PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit/WidthEdit"
 
 
 func _init():
