@@ -1,7 +1,7 @@
 class_name PixelArtGenerator
 extends Reference
 
-# TODO: remove random_generate*()
+# TODO: remove random_generate*() or support random generate
 
 class _PoolGrayImage:
 	extends Reference
@@ -181,7 +181,7 @@ class _PoolGrayImageDiagonal:
 		return hg
 
 
-func random_generate(width:int,height:int)->Image:
+static func random_generate(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
 	image.lock()
@@ -192,7 +192,7 @@ func random_generate(width:int,height:int)->Image:
 	return image
 
 
-func random_generate_horizontal(width:int,height:int)->Image:
+static func random_generate_horizontal(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
 	image.lock()
@@ -207,7 +207,7 @@ func random_generate_horizontal(width:int,height:int)->Image:
 	return image
 
 
-func random_generate_diagonal(width:int,height:int)->Image:
+static func random_generate_diagonal(width:int,height:int)->Image:
 	if width!=height:
 		var s:int=min(width,height)
 		return random_generate_diagonal(s,s)
