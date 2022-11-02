@@ -40,9 +40,8 @@ func _on_GenerateButton_pressed():
 			image=pixel_art_generator.perlin_generate(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		elif horizontal_button.pressed:
 			image=pixel_art_generator.perlin_generate_horizontal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
-#			image=pixel_art_generator.random_generate_horizontal(width_edit.value,height_edit.value)
 		elif diagonal_button.pressed:
-			image=pixel_art_generator.random_generate_diagonal(width_edit.value,height_edit.value)
+			image=pixel_art_generator.perlin_generate_diagonal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		var texture:=ImageTexture.new()
 		texture.create_from_image(image,3)
 		pixel_art_view.texture=texture

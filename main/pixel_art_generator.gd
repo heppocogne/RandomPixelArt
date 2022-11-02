@@ -1,7 +1,6 @@
 class_name PixelArtGenerator
 extends Reference
 
-# TODO: support perlin_generate_diagonal
 # TODO: remove random_generate*()
 
 class _PoolGrayImage:
@@ -10,7 +9,6 @@ class _PoolGrayImage:
 	var width:=0
 	var height:=0
 	var data:PoolByteArray
-	
 	
 	static func _create_instance()->_PoolGrayImage:
 		return _PoolGrayImage.new()
@@ -125,7 +123,6 @@ class _PoolGrayImageSymmetry:
 class _PoolGrayImageHorizontal:
 	extends _PoolGrayImageSymmetry
 	
-	
 	static func _create_instance()->_PoolGrayImage:
 		return _PoolGrayImageHorizontal.new()
 	
@@ -152,6 +149,35 @@ class _PoolGrayImageHorizontal:
 		if width%2:
 			for y in height:
 				hg[get_pixel(width/2,y)]-=1
+		return hg
+
+
+class _PoolGrayImageDiagonal:
+	extends _PoolGrayImageSymmetry
+	
+	static func _create_instance()->_PoolGrayImage:
+		return _PoolGrayImageDiagonal.new()
+	
+	
+	func _copy_y_impl(locked_image:Image,y:int):
+		for x in y:
+			# r=g=b, a=1
+			data.append(locked_image.get_pixel(x,y).r8)
+		data.append(locked_image.get_pixel(y,y).r8)
+	
+	
+	func index(x:int,y:int)->int:
+		assert(0<=x and x<width)
+		assert(0<=y and y<height)
+		if x<=y:
+			return (1+y)*y/2+x
+		else:
+			return (1+x)*x/2+y
+	
+	
+	func _modify_histgram(hg:PoolByteArray)->PoolByteArray:
+		for x in width:
+			hg[get_pixel(x,x)]-=1
 		return hg
 
 
@@ -202,6 +228,7 @@ func random_generate_diagonal(width:int,height:int)->Image:
 func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 							pool_gray_image_object:Object,copy_bin_y_method:String)->Image:
 	var image:=Image.new()
+	var pixels:=width*height
 	image.create(width,height,false,Image.FORMAT_RGBA8)
 	image.lock()
 	
@@ -209,7 +236,7 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 		var n:OpenSimplexNoise=noises[i]
 		var color:Color=color_params[i][0]
 		var weight:int=color_params[i][1]
-		var pgi:_PoolGrayImage=pool_gray_image_object.call("_create_instance")
+		var pgi:_PoolGrayImage=pool_gray_image_object.new()
 		pgi.create_from_image(n.get_image(width,height),true)
 		
 		var thresh:int=0
@@ -218,7 +245,6 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 		else:
 			var hs:=pgi.get_histogram()
 			var count:=0
-			var pixels:=width*height
 			for t in range(255,-1,-1):	# 255,254,...,1,0
 				count+=hs[t]
 				if weight<=100.0*count/pixels:
@@ -239,7 +265,8 @@ static func _copy_bin_y_impl(locked_image:Image,bin:_PoolGrayImage,color:Color,y
 
 
 func perlin_generate(width:int,height:int,noises:Array,color_params:Array)->Image:
-	return _perlin_generate_main(width,height,noises,color_params,_PoolGrayImage,"_copy_bin_y_impl")
+	return _perlin_generate_main(width,height,noises,color_params,
+								_PoolGrayImage,"_copy_bin_y_impl")
 
 
 static func _copy_bin_y_horizontal_impl(locked_image:Image,bin:_PoolGrayImage,color:Color,y:int):
@@ -253,4 +280,19 @@ static func _copy_bin_y_horizontal_impl(locked_image:Image,bin:_PoolGrayImage,co
 
 
 func perlin_generate_horizontal(width:int,height:int,noises:Array,color_params:Array)->Image:
-	return _perlin_generate_main(width,height,noises,color_params,_PoolGrayImageHorizontal,"_copy_bin_y_horizontal_impl")
+	return _perlin_generate_main(width,height,noises,color_params,
+								_PoolGrayImageHorizontal,"_copy_bin_y_horizontal_impl")
+
+
+static func _copy_bin_y_diagonal_impl(locked_image:Image,bin:_PoolGrayImage,color:Color,y:int):
+	for x in y:
+		if bin.get_pixel(x,y):
+			locked_image.set_pixel(x,y,color)
+			locked_image.set_pixel(y,x,color)
+	if bin.get_pixel(y,y):
+		locked_image.set_pixel(y,y,color)
+
+
+func perlin_generate_diagonal(width:int,height:int,noises:Array,color_params:Array)->Image:
+	return _perlin_generate_main(width,height,noises,color_params,
+								_PoolGrayImageDiagonal,"_copy_bin_y_diagonal_impl")
