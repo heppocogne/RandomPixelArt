@@ -74,20 +74,20 @@ margin_bottom = 20.0
 text = "Generate"
 script = ExtResource( 10 )
 
-[node name="Count" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Quantity" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 36.0
 margin_right = 191.0
 margin_bottom = 60.0
 
-[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Count"]
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity"]
 margin_top = 5.0
-margin_right = 41.0
+margin_right = 59.0
 margin_bottom = 19.0
-text = "Count:"
+text = "Quantity:"
 
-[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Count"]
-margin_left = 45.0
-margin_right = 119.0
+[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity"]
+margin_left = 63.0
+margin_right = 137.0
 margin_bottom = 24.0
 min_value = 1.0
 value = 16.0
