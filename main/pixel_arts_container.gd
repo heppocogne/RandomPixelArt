@@ -16,10 +16,6 @@ func _update_columns(width:int,scale:float):
 	columns=max(int((get_parent().rect_size.x+h_separation)/(width*scale+h_separation)),1)
 
 
-func _on_WidthEdit_value_changed(width:int):
-	_update_columns(width,get_parent().pixel_scale)
-
-
 func _on_ScrollContainer_pixel_scale_changed(scale:float):
 	_update_columns(width_edit.value,scale)
 	for p in pixel_arts:

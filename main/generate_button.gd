@@ -1,5 +1,7 @@
 extends Button
 
+signal column_update_request(width,scale)
+
 const _scene_pixel_art_view:PackedScene=preload("res://pixel_art_view/pixel_art_view.tscn")
 
 var pixel_art_generator:PixelArtGenerator
@@ -18,6 +20,7 @@ func _init():
 
 
 func _on_GenerateButton_pressed():
+	emit_signal("column_update_request",width_edit.value,pixel_art_container.get_parent().pixel_scale)
 	for p in pixel_art_container.pixel_arts:
 		p.queue_free()
 	pixel_art_container.pixel_arts.clear()
