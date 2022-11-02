@@ -258,6 +258,7 @@ script = ExtResource( 3 )
 margin_top = 456.0
 margin_right = 191.0
 margin_bottom = 488.0
+custom_constants/separation = 16
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
 margin_top = 9.0
@@ -266,11 +267,13 @@ margin_bottom = 23.0
 text = "Background:"
 
 [node name="PanelTextureButton" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource( 12 )]
+margin_left = 94.0
+margin_right = 126.0
 texture_normal = ExtResource( 14 )
 
 [node name="CheckerboardTextureButton" parent="BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource( 12 )]
-margin_left = 118.0
-margin_right = 150.0
+margin_left = 142.0
+margin_right = 174.0
 texture_normal = ExtResource( 13 )
 
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized" flags=6]
