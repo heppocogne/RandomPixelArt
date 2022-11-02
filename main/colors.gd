@@ -30,6 +30,7 @@ func remove_color_edit(ce:ColorEdit):
 	remove_child(ce)
 
 
+# Array of [color,weight]
 func get_color_parameters()->Array:
 	var color_parameters:=Array()
 	for cr in color_rects:
