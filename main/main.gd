@@ -1,6 +1,6 @@
 extends Control
 
-const export_parameters:=PoolStringArray([
+const reset_parameters:=PoolStringArray([
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity/SpinBox:value",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit/WidthEdit:value",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit/HeightEdit:value",

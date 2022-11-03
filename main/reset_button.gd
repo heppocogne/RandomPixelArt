@@ -9,7 +9,7 @@ func _init():
 
 func _on_Main_ready():
 	var main:=get_tree().root.get_node("Main")
-	for path in main.export_parameters:
+	for path in main.reset_parameters:
 		var colon_index:int=path.find(":")
 		var node:Node=main.get_node(path.left(colon_index))
 		initial_values.push_back([node,path.right(colon_index),main.get_node_property(path)])
