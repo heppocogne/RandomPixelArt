@@ -13,7 +13,7 @@ onready var height_edit:SpinBox=$"../Size/MarginContainer/Edit/HeightEdit"
 onready var none_button:CheckBox=$"../Symmetry/None"
 onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
 onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
-onready var complexity_edit:SpinBox=$"../Simplicity/Edit/SpinBox"
+onready var noise_period_edit:SpinBox=$"../NoisePeriod/Edit/SpinBox"
 onready var colors:VBoxContainer=$"../Colors"
 
 
@@ -34,7 +34,7 @@ func _on_GenerateButton_pressed():
 		for _i in color_params.size():
 			var noise:=OpenSimplexNoise.new()
 			noise.seed=randi()
-			noise.period=complexity_edit.value
+			noise.period=noise_period_edit.value
 			pixel_art_view.noises.push_back(noise)
 		if none_button.pressed:
 			image=pixel_art_generator.perlin_generate(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)

@@ -7,7 +7,7 @@ const export_parameters:=PoolStringArray([
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/None:pressed",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Horizontal:pressed",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Diagonal:pressed",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Simplicity/Edit/SpinBox:value",
+	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox:value",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Colors:color_parameters"
 ])
 
