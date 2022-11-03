@@ -14,6 +14,7 @@ func _gui_input(event:InputEvent):
 	if event is InputEventMouseButton:
 		var mb:=event as InputEventMouseButton
 		if mb.button_index==BUTTON_RIGHT and mb.pressed:
+			# TODO: remember last saved folder (or filename)
 			$FileDialog.popup_centered(Vector2(600,400))
 
 

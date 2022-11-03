@@ -17,6 +17,10 @@ const export_parameters:=PoolStringArray([
 # TODO: add icons to "Hrizontal" and "Diagonal"
 # TODO: support command-line arguments
 # TODO: allow larger image size, simplicity and smaller simplicity
+# TODO: support horizontal&vertical symmetry
+# TODO: support rotational symmetry (90°, 180°)
+# TODO: remember generator parameters
+# TODO: add error message popup
 func _ready():
 	randomize()
 
