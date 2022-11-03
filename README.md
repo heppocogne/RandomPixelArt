@@ -16,7 +16,7 @@ A tool that generate pixel art randomly using [perlin noise](https://en.wikipedi
   - None: Generates asymmetric images.
   - Horizontal: Generates horizontally symmetric images.
   - Diagonal: Generates diagonally symmetric images.
-- **Simplicity** (0.1~32)  
+- **Noise period** (0.1~32)  
   Affects the complexity of the generated images. Smaller value will result in more complicated images.
 - **Weight** (0~100)  
   The (approximate) percentage of pixels of each color.
