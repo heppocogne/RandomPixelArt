@@ -89,13 +89,13 @@ class _PoolGrayImage:
 		return result
 	
 	
-	func get_histogram()->PoolByteArray:
-		var hg:=PoolByteArray()
+	func get_histogram()->PoolIntArray:
+		var hg:=PoolIntArray()
 		hg.resize(256)
 		hg.fill(0)
 		for v in data:
 			hg[v]+=1
-		
+
 		return hg
 
 
@@ -106,8 +106,8 @@ class _PoolGrayImageSymmetry:
 		return _PoolGrayImageSymmetry.new()
 	
 	
-	func get_histogram()->PoolByteArray:
-		var hg:=PoolByteArray()
+	func get_histogram()->PoolIntArray:
+		var hg:=PoolIntArray()
 		hg.resize(256)
 		hg.fill(0)
 		for v in data:
@@ -116,7 +116,7 @@ class _PoolGrayImageSymmetry:
 		return _modify_histgram(hg)
 	
 	
-	func _modify_histgram(hg:PoolByteArray)->PoolByteArray:
+	func _modify_histgram(hg:PoolIntArray)->PoolIntArray:
 		return hg
 
 
@@ -145,7 +145,7 @@ class _PoolGrayImageHorizontal:
 			return y*half+(width-x-1)
 	
 	
-	func _modify_histgram(hg:PoolByteArray)->PoolByteArray:
+	func _modify_histgram(hg:PoolIntArray)->PoolIntArray:
 		if width%2:
 			for y in height:
 				hg[get_pixel(width/2,y)]-=1
@@ -175,7 +175,7 @@ class _PoolGrayImageDiagonal:
 			return (1+x)*x/2+y
 	
 	
-	func _modify_histgram(hg:PoolByteArray)->PoolByteArray:
+	func _modify_histgram(hg:PoolIntArray)->PoolIntArray:
 		for x in width:
 			hg[get_pixel(x,x)]-=1
 		return hg
@@ -242,6 +242,8 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 		var thresh:int=0
 		if weight==0:
 			thresh=256
+		elif weight==100:
+			pass	# thresh=0
 		else:
 			var hs:=pgi.get_histogram()
 			var count:=0
