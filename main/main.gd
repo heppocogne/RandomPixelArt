@@ -20,7 +20,6 @@ const reset_parameters:=PoolStringArray([
 # TODO: support horizontal&vertical symmetry
 # TODO: support rotational symmetry (90°, 180°)
 # TODO: remember generator parameters
-# TODO: add error message popup
 func _ready():
 	randomize()
 

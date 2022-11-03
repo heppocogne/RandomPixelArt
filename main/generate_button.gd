@@ -15,6 +15,7 @@ onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
 onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
 onready var noise_period_edit:SpinBox=$"../NoisePeriod/Edit/SpinBox"
 onready var colors:VBoxContainer=$"../Colors"
+onready var popup_messages:VBoxContainer=$"../../../../../PopupMessages"
 
 
 func _init():
@@ -50,3 +51,4 @@ func _on_GenerateButton_pressed():
 		pixel_art_container.pixel_arts.push_back(pixel_art_view)
 		pixel_art_container.add_child(pixel_art_view)
 		pixel_art_view.connect("saved",pixel_art_container,"_on_PixelArtView_saved")
+		pixel_art_view.connect("push_popup_message",popup_messages,"_on_popup_message_pushed")

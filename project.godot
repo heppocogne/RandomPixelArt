@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "PixelArtView",
 "language": "GDScript",
 "path": "res://pixel_art_view/pixel_art_view.gd"
+}, {
+"base": "PanelContainer",
+"class": "PopupMessage",
+"language": "GDScript",
+"path": "res://popup_messgae/popup_messgae.gd"
 } ]
 _global_script_class_icons={
 "BackgroundTextureButton": "",
 "ColorEdit": "",
 "PixelArtGenerator": "",
-"PixelArtView": ""
+"PixelArtView": "",
+"PopupMessage": ""
 }
 
 [application]
