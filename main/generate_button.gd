@@ -49,3 +49,4 @@ func _on_GenerateButton_pressed():
 		
 		pixel_art_container.pixel_arts.push_back(pixel_art_view)
 		pixel_art_container.add_child(pixel_art_view)
+		pixel_art_view.connect("saved",pixel_art_container,"_on_PixelArtView_saved")
