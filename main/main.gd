@@ -1,14 +1,14 @@
 extends Control
 
 const reset_parameters:=PoolStringArray([
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity/SpinBox:value",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit:value",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit:value",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/None:pressed",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Horizontal:pressed",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Diagonal:pressed",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox:value",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Colors:color_parameters"
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity/SpinBox:value",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit:value",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit:value",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/None:pressed",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Horizontal:pressed",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Diagonal:pressed",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox:value",
+	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors:color_parameters"
 ])
 
 
@@ -19,7 +19,6 @@ const reset_parameters:=PoolStringArray([
 # TODO: support horizontal&vertical symmetry
 # TODO: support rotational symmetry (90°, 180°)
 # TODO: remember generator parameters
-# TODO: cover BackgroundPanel/HSplitContainer/PanelContainer with ScrollContainer
 func _ready():
 	randomize()
 

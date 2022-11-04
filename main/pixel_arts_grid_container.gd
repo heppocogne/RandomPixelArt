@@ -6,7 +6,7 @@ var last_saved_folder:String
 var last_saved_file:String
 var pixel_arts:Array
 
-onready var width_edit:SpinBox=$"../../../PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
+onready var width_edit:SpinBox=$"../../../ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
 
 
 func _init():

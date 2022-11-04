@@ -6,7 +6,7 @@ const _scene_pixel_art_view:PackedScene=preload("res://pixel_art_view/pixel_art_
 
 var pixel_art_generator:PixelArtGenerator
 
-onready var pixel_art_container:GridContainer=$"../../../../MarginContainer/ScrollContainer/PixelArts"
+onready var pixel_art_container:GridContainer=$"../../../../../MarginContainer/ScrollContainer/PixelArts"
 onready var count_spinbox:SpinBox=$"../Quantity/SpinBox"
 onready var width_edit:SpinBox=$"../Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
 onready var height_edit:SpinBox=$"../Size/MarginContainer/VBoxContainer/Edit/HeightEdit"
@@ -15,7 +15,7 @@ onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
 onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
 onready var noise_period_edit:SpinBox=$"../NoisePeriod/Edit/SpinBox"
 onready var colors:VBoxContainer=$"../Colors"
-onready var popup_messages:VBoxContainer=$"../../../../../PopupMessages"
+onready var popup_messages:VBoxContainer=$"../../../../../../PopupMessages"
 
 
 func _init():
