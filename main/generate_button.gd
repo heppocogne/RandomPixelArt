@@ -38,10 +38,16 @@ func _on_GenerateButton_pressed():
 			noise.period=noise_period_edit.value
 			pixel_art_view.noises.push_back(noise)
 		if none_button.pressed:
+			# warning-ignore:narrowing_conversion
+			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		elif horizontal_button.pressed:
+			# warning-ignore:narrowing_conversion
+			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate_horizontal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		elif diagonal_button.pressed:
+			# warning-ignore:narrowing_conversion
+			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate_diagonal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		var texture:=ImageTexture.new()
 		texture.create_from_image(image,3)
@@ -50,5 +56,7 @@ func _on_GenerateButton_pressed():
 		
 		pixel_art_container.pixel_arts.push_back(pixel_art_view)
 		pixel_art_container.add_child(pixel_art_view)
+		# warning-ignore:return_value_discarded
 		pixel_art_view.connect("saved",pixel_art_container,"_on_PixelArtView_saved")
+		# warning-ignore:return_value_discarded
 		pixel_art_view.connect("push_popup_message",popup_messages,"_on_popup_message_pushed")

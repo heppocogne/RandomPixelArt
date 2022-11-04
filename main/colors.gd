@@ -21,6 +21,7 @@ func add_color_edit(ce:ColorEdit):
 	if ce.get_parent()==null:
 		add_child(ce)
 		move_child(ce,get_child_count()-2)
+	# warning-ignore:return_value_discarded
 	ce.connect("remove_button_pressed",self,"_on_ColorEdit_remove_button_pressed",[],CONNECT_ONESHOT)
 	color_rects.push_back(ce)
 
