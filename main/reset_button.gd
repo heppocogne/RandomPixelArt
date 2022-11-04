@@ -16,7 +16,7 @@ func _on_Main_ready():
 
 
 func _on_ResetButton_pressed():
-	var kar:CheckButton=$"../Size/MarginContainer/VBoxContainer/KeepAspectRatio"
+	var kar:CheckBox=$"../Size/MarginContainer/VBoxContainer/KeepAspectRatio"
 	var kar_pressed:bool=kar.pressed
 	kar.pressed=false
 	for a in initial_values:
