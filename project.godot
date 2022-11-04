@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "PopupMessage",
 "language": "GDScript",
 "path": "res://popup_messgae/popup_messgae.gd"
+}, {
+"base": "SpinBox",
+"class": "SizeEdit",
+"language": "GDScript",
+"path": "res://main/size_edit.gd"
 } ]
 _global_script_class_icons={
 "BackgroundTextureButton": "",
 "ColorEdit": "",
 "PixelArtGenerator": "",
 "PixelArtView": "",
-"PopupMessage": ""
+"PopupMessage": "",
+"SizeEdit": ""
 }
 
 [application]

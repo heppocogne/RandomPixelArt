@@ -2,8 +2,8 @@ extends Control
 
 const reset_parameters:=PoolStringArray([
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity/SpinBox:value",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit/WidthEdit:value",
-	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/Edit/HeightEdit:value",
+	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit:value",
+	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit:value",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/None:pressed",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Horizontal:pressed",
 	"BackgroundPanel/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry/Diagonal:pressed",
@@ -12,7 +12,6 @@ const reset_parameters:=PoolStringArray([
 ])
 
 
-# TODO: support keep_aspect_ratio
 # TODO: support hot reload
 # TODO: add icons to "Hrizontal" and "Diagonal"
 # TODO: support command-line arguments
@@ -20,6 +19,7 @@ const reset_parameters:=PoolStringArray([
 # TODO: support horizontal&vertical symmetry
 # TODO: support rotational symmetry (90°, 180°)
 # TODO: remember generator parameters
+# TODO: cover BackgroundPanel/HSplitContainer/PanelContainer with ScrollContainer
 func _ready():
 	randomize()
 
