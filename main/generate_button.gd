@@ -56,7 +56,5 @@ func _on_GenerateButton_pressed():
 		
 		pixel_art_container.pixel_arts.push_back(pixel_art_view)
 		pixel_art_container.add_child(pixel_art_view)
-		# warning-ignore:return_value_discarded
-		pixel_art_view.connect("saved",pixel_art_container,"_on_PixelArtView_saved")
-		# warning-ignore:return_value_discarded
-		pixel_art_view.connect("push_popup_message",popup_messages,"_on_popup_message_pushed")
+		pixel_art_view.connect_signals(pixel_art_container,"_on_PixelArtView_saved",
+										popup_messages,"_on_popup_message_pushed")

@@ -1,53 +1,68 @@
 class_name PixelArtView
 extends TextureRect
 
-signal saved(path)
-signal push_popup_message(type,text)
-
 var noises:Array
+var file_dialog:FileDialog
+var downloader:Reference
+var context_menu:PopupMenu
 
 
 func _init():
 	noises=[]
 
 
+func _ready():
+	context_menu=$ContextMenu
+	if !OS.has_feature("web"):
+		file_dialog=load("res://desktop/image_saver_file_dialog.tscn").instance()
+		call_deferred("add_child",file_dialog)
+		context_menu.add_item("Save as .png",0)
+		context_menu.add_item("Save as .exr",1)
+	else:
+		assert(OS.has_feature("JavaScript"))
+		downloader=load("res://webapp/image_downloader.gd").new()
+		context_menu.add_item("Download as .png",0)
+		# save_exr seems to be not working in web export
+#		context_menu.add_item("Download as .exr",1)
+
+
 func _gui_input(event:InputEvent):
 	if event is InputEventMouseButton:
 		var mb:=event as InputEventMouseButton
 		if mb.button_index==BUTTON_RIGHT and mb.pressed:
-			$FileDialog.current_dir=get_parent().last_saved_folder
-			$FileDialog.current_file=get_parent().last_saved_file
-			$FileDialog.popup_centered(Vector2(600,400))
+			context_menu.popup()
+			context_menu.rect_position=get_global_mouse_position()
 
 
-func _on_FileDialog_file_selected(path:String):
-	var img:Image=texture.get_data()
-	var save_error:int
-	if path.ends_with(".png"):
-		save_error=img.save_png(path)
-	elif path.ends_with(".exr"):
-		save_error=img.save_exr(path)
-	elif path.ends_with(".tres") or path.ends_with(".res"):
-		save_error=ResourceSaver.save(path,img)
+func connect_signals(handler_saved:Object,callback_saved:String,
+					handler_push_popup_message:Object,callback_push_popup_message:String):
+	if !OS.has_feature("web"):
+		# warning-ignore:return_value_discarded
+		file_dialog.connect("saved",handler_saved,callback_saved)
+		# warning-ignore:return_value_discarded
+		file_dialog.connect("push_popup_message",handler_push_popup_message,callback_push_popup_message)
 	else:
-		# unreachable
-		var ext:=""
-		var period_index:=path.rfind(".")
-		if 0<period_index:
-			ext=path.right(period_index)
-		emit_signal("push_popup_message",
-					PopupMessage.MessageTypes.ERROR_MESSAGE,
-					"Extension '%s' is not supported"%[ext])
-	
-	if save_error==OK:
-		emit_signal("saved",path)
-		emit_signal("push_popup_message",
-					PopupMessage.MessageTypes.SUCCESS_MESSAGE,
-					"Successfully saved the image to '%s'"%[path])
+		# warning-ignore:return_value_discarded
+		downloader.connect("push_popup_message",handler_push_popup_message,callback_push_popup_message)
+
+
+func _on_ContextMenu_id_pressed(id:int):
+	var save_ext:String
+	if id==0:
+		save_ext=".png"
 	else:
-		emit_signal("push_popup_message",
-					PopupMessage.MessageTypes.ERROR_MESSAGE,
-					"Failed to save the image to '%s'\nError code:%d"%[path,save_error])
+		save_ext=".exr"
+	if !OS.has_feature("web"):
+		file_dialog.save_texture=texture
+		file_dialog.filters=["*"+save_ext]
+		file_dialog.current_dir=get_parent().last_saved_folder
+		file_dialog.current_file=get_parent().last_saved_file
+		file_dialog.popup_centered(Vector2(600,400))
+	else:
+		print_debug("web save")
+		downloader.save_texture=texture
+		downloader.save_ext=save_ext
+		downloader.dowload_image()
 
 
 func _on_PixelArtView_resized():
