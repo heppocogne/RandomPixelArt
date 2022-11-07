@@ -59,7 +59,6 @@ func _on_ContextMenu_id_pressed(id:int):
 		file_dialog.current_file=get_parent().last_saved_file
 		file_dialog.popup_centered(Vector2(600,400))
 	else:
-		print_debug("web save")
 		downloader.save_texture=texture
 		downloader.save_ext=save_ext
 		downloader.dowload_image()
