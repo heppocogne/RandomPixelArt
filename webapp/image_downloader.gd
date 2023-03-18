@@ -1,16 +1,16 @@
-extends Reference
+extends RefCounted
 
 signal push_popup_message(type,text)
 
 
-var save_texture:Texture
+var save_texture:Texture2D
 var save_ext:String
 
 
 func dowload_image():
 	var img:Image=save_texture.get_data()
 	var saved_file:=File.new()
-	var filepath:="user://random_pixel_art.temp-"+str(OS.get_unix_time())+save_ext
+	var filepath:="user://random_pixel_art.temp-"+str(Time.get_unix_time_from_system())+save_ext
 	var save_error:int
 	if save_ext==".png":
 		save_error=img.save_png(filepath)
@@ -28,7 +28,7 @@ func dowload_image():
 					"Failed to save the image to '%s'\nError code:%d"%[filepath,save_error])
 	
 	saved_file.open(filepath,File.READ)
-	var buffer:=saved_file.get_buffer(saved_file.get_len())
+	var buffer:=saved_file.get_buffer(saved_file.get_length())
 	assert(saved_file.file_exists(filepath))
 #	assert(saved_file.get_sha256(filepath)!="")
 	var download_filename:="random_pixel_art-%s%s"%[saved_file.get_sha256(filepath),save_ext]

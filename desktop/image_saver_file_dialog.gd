@@ -4,7 +4,7 @@ signal saved(path)
 signal push_popup_message(type,text)
 
 
-var save_texture:Texture
+var save_texture:Texture2D
 
 
 func _on_FileDialog_file_selected(path:String):

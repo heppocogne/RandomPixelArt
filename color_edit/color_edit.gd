@@ -1,13 +1,13 @@
-tool
+@tool
 class_name ColorEdit
 extends HBoxContainer
 
 signal remove_button_pressed(ref_self)
 
-export var removable:=true setget set_removable
+@export var removable:=true: set = set_removable
 
 func set_window_title(title:String):
-	$ColorRect/WindowDialog.window_title=title
+	$ColorRect/Window.window_title=title
 
 
 func get_rect_color()->Color:

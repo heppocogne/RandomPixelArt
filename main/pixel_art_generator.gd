@@ -1,35 +1,35 @@
 class_name PixelArtGenerator
-extends Reference
+extends RefCounted
 
 # TODO: remove random_generate*() or support random generate
 
 class _PoolGrayImage:
-	extends Reference
+	extends RefCounted
 	
 	var width:=0
 	var height:=0
-	var data:PoolByteArray
+	var data:PackedByteArray
 	
 	static func _create_instance()->_PoolGrayImage:
 		return _PoolGrayImage.new()
 	
 	
-	func create_from_image(image:Image,normalize:=false):
+	func create_from_image(image:Image) #,normalize:=false:
 		assert(image and image.get_format()==Image.FORMAT_L8)
 		width=image.get_width()
 		height=image.get_height()
 		assert(0<width and 0<height)
-		data=PoolByteArray()
-		image.lock()
+		data=PackedByteArray()
+		false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 		for y in height:
 			_copy_y_impl(image,y)
-		image.unlock()
+		false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 		
 		if normalize:
 			var value_range:=get_value_range()
 			for i in data.size():
 				# warning-ignore:narrowing_conversion
-				data[i]=round(range_lerp(data[i],value_range[0],value_range[1],0,255))
+				data[i]=round(remap(data[i],value_range[0],value_range[1],0,255))
 	
 	
 	func _copy_y_impl(locked_image:Image,y:int):
@@ -69,7 +69,7 @@ class _PoolGrayImage:
 		return m
 	
 	
-	func get_value_range()->PoolByteArray:
+	func get_value_range()->PackedByteArray:
 		var min_value:=255
 		var max_value:=0
 		for v in data:
@@ -77,14 +77,14 @@ class _PoolGrayImage:
 			min_value=min(min_value,v)
 			# warning-ignore:narrowing_conversion
 			max_value=max(max_value,v)
-		return PoolByteArray([min_value,max_value])
+		return PackedByteArray([min_value,max_value])
 	
 	
 	func get_binary(thresh:int)->_PoolGrayImage:
 		var result:=_create_instance()
 		result.width=width
 		result.height=height
-		var bin_data:=PoolByteArray()
+		var bin_data:=PackedByteArray()
 		for v in data:
 			if thresh<=v:
 				bin_data.append(255)
@@ -94,8 +94,8 @@ class _PoolGrayImage:
 		return result
 	
 	
-	func get_histogram()->PoolIntArray:
-		var hg:=PoolIntArray()
+	func get_histogram()->PackedInt32Array:
+		var hg:=PackedInt32Array()
 		hg.resize(256)
 		hg.fill(0)
 		for v in data:
@@ -111,8 +111,8 @@ class _PoolGrayImageSymmetry:
 		return _PoolGrayImageSymmetry.new()
 	
 	
-	func get_histogram()->PoolIntArray:
-		var hg:=PoolIntArray()
+	func get_histogram()->PackedInt32Array:
+		var hg:=PackedInt32Array()
 		hg.resize(256)
 		hg.fill(0)
 		for v in data:
@@ -121,7 +121,7 @@ class _PoolGrayImageSymmetry:
 		return _modify_histgram(hg)
 	
 	
-	func _modify_histgram(hg:PoolIntArray)->PoolIntArray:
+	func _modify_histgram(hg:PackedInt32Array)->PackedInt32Array:
 		return hg
 
 
@@ -153,7 +153,7 @@ class _PoolGrayImageHorizontal:
 			return y*w_half+(width-x-1)
 	
 	
-	func _modify_histgram(hg:PoolIntArray)->PoolIntArray:
+	func _modify_histgram(hg:PackedInt32Array)->PackedInt32Array:
 		if width%2:
 			for y in height:
 				# warning-ignore:integer_division
@@ -186,7 +186,7 @@ class _PoolGrayImageDiagonal:
 			return (1+x)*x/2+y
 	
 	
-	func _modify_histgram(hg:PoolIntArray)->PoolIntArray:
+	func _modify_histgram(hg:PackedInt32Array)->PackedInt32Array:
 		for x in width:
 			hg[get_pixel(x,x)]-=1
 		return hg
@@ -195,18 +195,18 @@ class _PoolGrayImageDiagonal:
 static func random_generate(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	image.lock()
+	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	for y in height:
 		for x in width:
 			image.set_pixel(x,y,Color(randf(),randf(),randf(),randf()))
-	image.unlock()
+	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 
 static func random_generate_horizontal(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	image.lock()
+	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	for y in height:
 		# warning-ignore:integer_division
 		var w_half:=width/2
@@ -216,7 +216,7 @@ static func random_generate_horizontal(width:int,height:int)->Image:
 			image.set_pixel(width-x-1,y,c)
 		if width%2:
 			image.set_pixel(w_half+1,y,Color(randf(),randf(),randf(),randf()))
-	image.unlock()
+	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 
@@ -228,14 +228,14 @@ static func random_generate_diagonal(width:int,height:int)->Image:
 	
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	image.lock()
+	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	for y in height:
 		for x in y:
 			var c:=Color(randf(),randf(),randf(),randf())
 			image.set_pixel(x,y,c)
 			image.set_pixel(y,x,c)
 		image.set_pixel(y,y,Color(randf(),randf(),randf(),randf()))
-	image.unlock()
+	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 
@@ -244,14 +244,14 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 	var image:=Image.new()
 	var pixels:=width*height
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	image.lock()
+	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	
 	for i in color_params.size():
-		var n:OpenSimplexNoise=noises[i]
+		var n:FastNoiseLite=noises[i]
 		var color:Color=color_params[i][0]
 		var weight:int=color_params[i][1]
 		var pgi:_PoolGrayImage=pool_gray_image_object.new()
-		pgi.create_from_image(n.get_image(width,height),true)
+		pgi.create_from_image(n.get_image(width,height)) #,true
 		
 		var thresh:int=0
 		if weight==0:
@@ -270,7 +270,7 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 		
 		for y in height:
 			self.call(copy_bin_y_method,image,bin,color,y)
-	image.unlock()
+	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 

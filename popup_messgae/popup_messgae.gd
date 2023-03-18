@@ -10,8 +10,8 @@ enum MessageTypes{
 	ERROR_MESSAGE
 }
 
-var text:String setget set_text
-var message_type:int setget set_message_type
+var text:String: set = set_text
+var message_type:int: set = set_message_type
 
 
 func set_text(t:String):
@@ -22,9 +22,9 @@ func set_text(t:String):
 func set_message_type(t:int):
 	message_type=t
 	if t==MessageTypes.SUCCESS_MESSAGE:
-		$Label.add_color_override("font_color",success_color)
+		$Label.add_theme_color_override("font_color",success_color)
 	elif t==MessageTypes.ERROR_MESSAGE:
-		$Label.add_color_override("font_color",error_color)
+		$Label.add_theme_color_override("font_color",error_color)
 
 
 func _on_Timer_timeout():

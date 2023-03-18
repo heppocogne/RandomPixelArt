@@ -12,7 +12,7 @@ var ctrl_pressed:=false
 func _input(event:InputEvent):
 	if event is InputEventKey:
 		var key:=event as InputEventKey
-		if key.scancode==KEY_CONTROL:
+		if key.keycode==KEY_CTRL:
 			ctrl_pressed=key.pressed
 			if key.pressed:
 				mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -25,10 +25,10 @@ func _input(event:InputEvent):
 		if !mb.pressed or !ctrl_pressed:
 			return
 		
-		if mb.button_index==BUTTON_WHEEL_UP:
+		if mb.button_index==MOUSE_BUTTON_WHEEL_UP:
 			_old_pixle_scale=pixel_scale
 			pixel_scale=min(scale_max,pixel_scale*2.0)
-		elif mb.button_index==BUTTON_WHEEL_DOWN:
+		elif mb.button_index==MOUSE_BUTTON_WHEEL_DOWN:
 			_old_pixle_scale=pixel_scale
 			pixel_scale=max(scale_min,pixel_scale/2.0)
 		if pixel_scale!=_old_pixle_scale:

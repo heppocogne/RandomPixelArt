@@ -3,7 +3,7 @@ extends TextureRect
 
 var noises:Array
 var file_dialog:FileDialog
-var downloader:Reference
+var downloader:RefCounted
 var context_menu:PopupMenu
 
 
@@ -14,14 +14,14 @@ func _init():
 func _ready():
 	context_menu=$ContextMenu
 	if !OS.has_feature("web"):
-		file_dialog=load("res://desktop/image_saver_file_dialog.tscn").instance()
+		file_dialog=load("res://desktop/image_saver_file_dialog.tscn").instantiate()
 		call_deferred("add_child",file_dialog)
-		context_menu.add_item("Save as .png",0)
-		context_menu.add_item("Save as .exr",1)
+		context_menu.add_item("Save as super.png",0)
+		context_menu.add_item("Save as super.exr",1)
 	else:
 		assert(OS.has_feature("JavaScript"))
 		downloader=load("res://webapp/image_downloader.gd").new()
-		context_menu.add_item("Download as .png",0)
+		context_menu.add_item("Download as super.png",0)
 		# save_exr seems to be not working in web export
 #		context_menu.add_item("Download as .exr",1)
 
@@ -29,21 +29,21 @@ func _ready():
 func _gui_input(event:InputEvent):
 	if event is InputEventMouseButton:
 		var mb:=event as InputEventMouseButton
-		if mb.button_index==BUTTON_RIGHT and mb.pressed:
+		if mb.button_index==MOUSE_BUTTON_RIGHT and mb.pressed:
 			context_menu.popup()
-			context_menu.rect_position=get_global_mouse_position()
+			context_menu.position=get_global_mouse_position()
 
 
 func connect_signals(handler_saved:Object,callback_saved:String,
 					handler_push_popup_message:Object,callback_push_popup_message:String):
 	if !OS.has_feature("web"):
 		# warning-ignore:return_value_discarded
-		file_dialog.connect("saved",handler_saved,callback_saved)
+		file_dialog.connect("saved", Callable(handler_saved, callback_saved))
 		# warning-ignore:return_value_discarded
-		file_dialog.connect("push_popup_message",handler_push_popup_message,callback_push_popup_message)
+		file_dialog.connect("push_popup_message", Callable(handler_push_popup_message, callback_push_popup_message))
 	else:
 		# warning-ignore:return_value_discarded
-		downloader.connect("push_popup_message",handler_push_popup_message,callback_push_popup_message)
+		downloader.connect("push_popup_message", Callable(handler_push_popup_message, callback_push_popup_message))
 
 
 func _on_ContextMenu_id_pressed(id:int):
@@ -65,7 +65,7 @@ func _on_ContextMenu_id_pressed(id:int):
 
 
 func _on_PixelArtView_resized():
-	$SelectionIndicator.rect_size=rect_size
+	$SelectionIndicator.size=size
 
 
 func _on_PixelArtView_mouse_entered():

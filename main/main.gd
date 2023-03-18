@@ -1,6 +1,6 @@
 extends Control
 
-const reset_parameters:=PoolStringArray([
+const reset_parameters:=PackedStringArray([
 	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity/SpinBox:value",
 	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit:value",
 	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit:value",
@@ -35,5 +35,5 @@ func set_node_property(path:String, val):
 	node.set_indexed(path.right(colon_index), val)
 
 
-func _on_change_background_requested(tex:Texture):
+func _on_change_background_requested(tex:Texture2D):
 	$BackgroundPanel.get_stylebox("panel").texture=tex
