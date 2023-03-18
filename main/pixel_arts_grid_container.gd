@@ -1,6 +1,6 @@
 extends GridContainer
 
-var h_separation:int=get_constant("h_separation")
+var h_separation:int=get_theme_constant("h_separation")
 #var v_separation:int=get_constant("vseparation")
 var last_saved_folder:String
 var last_saved_file:String

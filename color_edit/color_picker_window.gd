@@ -7,4 +7,4 @@ func _ready():
 
 
 func _on_ColorPicker_resized():
-	custom_minimum_size=$ColorPicker.size+size_ext
+	min_size=$ColorPicker.size+size_ext

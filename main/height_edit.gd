@@ -14,5 +14,5 @@ func _on_WidthEdit_value_changed(v:int):
 
 
 func _on_HeightEdit_value_changed(v:int):
-	if !keep_aspect_ratio.pressed:
+	if !keep_aspect_ratio.button_pressed:
 		aspect_ratio=_pair_node.value/v

@@ -14,7 +14,7 @@ class _PoolGrayImage:
 		return _PoolGrayImage.new()
 	
 	
-	func create_from_image(image:Image) #,normalize:=false:
+	func create_from_image(image:Image,normalize:=false):
 		assert(image and image.get_format()==Image.FORMAT_L8)
 		width=image.get_width()
 		height=image.get_height()

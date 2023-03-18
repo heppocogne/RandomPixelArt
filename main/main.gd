@@ -1,6 +1,6 @@
 extends Control
 
-const reset_parameters:=PackedStringArray([
+var reset_parameters:=PackedStringArray([
 	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity/SpinBox:value",
 	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit:value",
 	"BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit:value",
