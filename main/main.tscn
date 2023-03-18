@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbal1w8ijurou"]
+[gd_scene load_steps=19 format=3 uid="uid://cdvuqv6uo86e4"]
 
 [ext_resource type="PackedScene" uid="uid://bpg4fe6605cix" path="res://color_edit/color_edit.tscn" id="1"]
 [ext_resource type="Script" path="res://main/main.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://8nx15n0lumde" path="res://main/darkestgray_pixel.png" id="2_lkbo6"]
 [ext_resource type="Script" path="res://main/reset_button.gd" id="3"]
 [ext_resource type="Script" path="res://main/pixel_arts_grid_container.gd" id="4"]
 [ext_resource type="Script" path="res://main/simplicity_h_slider.gd" id="6"]
@@ -12,19 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://11ueo8apf2ye" path="res://main/add_icon.exr" id="11"]
 [ext_resource type="PackedScene" path="res://main/background_texture_button/background_texture_button.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://cklkf18kmnqtp" path="res://main/checkerboard32x32.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://8nx15n0lumde" path="res://main/darkestblue_pixel.png" id="14"]
 [ext_resource type="Script" path="res://main/popup_messages.gd" id="15"]
 [ext_resource type="Script" path="res://main/width_edit.gd" id="16"]
 [ext_resource type="Script" path="res://main/height_edit.gd" id="17"]
 [ext_resource type="Script" path="res://main/panel_scroll_container.gd" id="18"]
 
-[sub_resource type="Theme" id="2"]
-
-[sub_resource type="StyleBoxTexture" id="1"]
-texture = ExtResource("14")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trc03"]
+texture = ExtResource("2_lkbo6")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 1, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -33,14 +30,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("2")
 script = ExtResource("2")
 
 [node name="BackgroundPanel" type="Panel" parent="."]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_styles/panel = SubResource("1")
+theme_override_styles/panel = SubResource("StyleBoxTexture_trc03")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanel"]
 layout_mode = 0
@@ -229,7 +225,9 @@ text = "Background:"
 
 [node name="PanelTextureButton" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource("12")]
 layout_mode = 2
-texture_normal = ExtResource("14")
+texture_normal = ExtResource("2_lkbo6")
+ignore_texture_size = true
+stretch_mode = 1
 
 [node name="CheckerboardTextureButton" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource("12")]
 layout_mode = 2

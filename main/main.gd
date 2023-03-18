@@ -36,4 +36,4 @@ func set_node_property(path:String, val):
 
 
 func _on_change_background_requested(tex:Texture2D):
-	$BackgroundPanel.get_stylebox("panel").texture=tex
+	$BackgroundPanel.get_theme_stylebox("panel").texture=tex
