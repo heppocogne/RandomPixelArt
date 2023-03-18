@@ -9,5 +9,5 @@ func _gui_input(event:InputEvent):
 			$Window.popup_centered($Window/ColorPicker.size+$Window.size_ext)
 
 
-func _on_WindowDialog_popup_hide():
+func _on_window_close_requested():
 	color=$Window/ColorPicker.color

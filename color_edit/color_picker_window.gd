@@ -8,3 +8,7 @@ func _ready():
 
 func _on_ColorPicker_resized():
 	min_size=$ColorPicker.size+size_ext
+
+
+func _on_close_requested():
+	hide()
