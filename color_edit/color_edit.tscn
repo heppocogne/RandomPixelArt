@@ -29,10 +29,10 @@ visible = false
 script = ExtResource("3")
 
 [node name="ColorPicker" type="ColorPicker" parent="ColorRect/Window"]
-offset_left = 56.0
-offset_top = 32.0
-offset_right = 340.0
-offset_bottom = 494.0
+offset_left = 120.0
+offset_top = 64.0
+offset_right = 372.0
+offset_bottom = 526.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2

@@ -16,12 +16,12 @@ func _ready():
 	if !OS.has_feature("web"):
 		file_dialog=load("res://desktop/image_saver_file_dialog.tscn").instantiate()
 		call_deferred("add_child",file_dialog)
-		context_menu.add_item("Save as super.png",0)
-		context_menu.add_item("Save as super.exr",1)
+		context_menu.add_item("Save as *.png",0)
+		context_menu.add_item("Save as *.exr",1)
 	else:
-		assert(OS.has_feature("JavaScript"))
+#		assert(OS.has_feature("JavaScript"))
 		downloader=load("res://webapp/image_downloader.gd").new()
-		context_menu.add_item("Download as super.png",0)
+		context_menu.add_item("Download as *.png",0)
 		# save_exr seems to be not working in web export
 #		context_menu.add_item("Download as .exr",1)
 
@@ -29,7 +29,7 @@ func _ready():
 func _gui_input(event:InputEvent):
 	if event is InputEventMouseButton:
 		var mb:=event as InputEventMouseButton
-		if mb.button_index==MOUSE_BUTTON_RIGHT and mb.pressed:
+		if mb.button_index==MOUSE_BUTTON_RIGHT or mb.button_index==MOUSE_BUTTON_LEFT and mb.pressed:
 			context_menu.popup()
 			context_menu.position=get_global_mouse_position()
 

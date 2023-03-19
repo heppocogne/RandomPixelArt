@@ -8,8 +8,7 @@ var save_ext:String
 
 
 func dowload_image():
-	var img:Image=save_texture.get_data()
-	var saved_file:=File.new()
+	var img:Image=save_texture.get_image()
 	var filepath:="user://random_pixel_art.temp-"+str(Time.get_unix_time_from_system())+save_ext
 	var save_error:int
 	if save_ext==".png":
@@ -27,12 +26,12 @@ func dowload_image():
 					PopupMessage.MessageTypes.ERROR_MESSAGE,
 					"Failed to save the image to '%s'\nError code:%d"%[filepath,save_error])
 	
-	saved_file.open(filepath,File.READ)
-	var buffer:=saved_file.get_buffer(saved_file.get_length())
-	assert(saved_file.file_exists(filepath))
+	var f:=FileAccess.open(filepath,FileAccess.READ)
+	var buffer:=f.get_buffer(f.get_length())
+	assert(f.file_exists(filepath))
 #	assert(saved_file.get_sha256(filepath)!="")
-	var download_filename:="random_pixel_art-%s%s"%[saved_file.get_sha256(filepath),save_ext]
-	JavaScript.download_buffer(buffer,download_filename)
+	var download_filename:="random_pixel_art-%s%s"%[f.get_sha256(filepath),save_ext]
+	JavaScriptBridge.download_buffer(buffer,download_filename)
 	emit_signal("push_popup_message",
 				PopupMessage.MessageTypes.SUCCESS_MESSAGE,
 				"Downloading the image as '%s'"%download_filename)

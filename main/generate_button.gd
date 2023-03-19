@@ -13,7 +13,7 @@ var pixel_art_generator:PixelArtGenerator
 @onready var none_button:CheckBox=$"../Symmetry/None"
 @onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
 @onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
-@onready var noise_period_edit:SpinBox=$"../NoisePeriod/Edit/SpinBox"
+@onready var noise_frequency_edit:SpinBox=$"../NoiseFrequency/Edit/SpinBox"
 @onready var colors:VBoxContainer=$"../Colors"
 @onready var popup_messages:VBoxContainer=$"../../../../../../PopupMessages"
 
@@ -35,22 +35,20 @@ func _on_GenerateButton_pressed():
 		for _i in color_params.size():
 			var noise:=FastNoiseLite.new()
 			noise.seed=randi()
-			noise.period=noise_period_edit.value
+			noise.frequency=noise_frequency_edit.value
+			noise.fractal_type=FastNoiseLite.FRACTAL_NONE
 			pixel_art_view.noises.push_back(noise)
-		if none_button.pressed:
-			# warning-ignore:narrowing_conversion
+		if none_button.button_pressed:
 			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
-		elif horizontal_button.pressed:
-			# warning-ignore:narrowing_conversion
+		elif horizontal_button.button_pressed:
 			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate_horizontal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
-		elif diagonal_button.pressed:
-			# warning-ignore:narrowing_conversion
+		elif diagonal_button.button_pressed:
 			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate_diagonal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		var texture:=ImageTexture.new()
-		texture.create_from_image(image) #,3
+		texture=ImageTexture.create_from_image(image) #,3
 		pixel_art_view.texture=texture
 		pixel_art_view.custom_minimum_size=texture_rect_size
 		

@@ -20,10 +20,8 @@ class _PoolGrayImage:
 		height=image.get_height()
 		assert(0<width and 0<height)
 		data=PackedByteArray()
-		false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 		for y in height:
 			_copy_y_impl(image,y)
-		false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 		
 		if normalize:
 			var value_range:=get_value_range()
@@ -195,18 +193,15 @@ class _PoolGrayImageDiagonal:
 static func random_generate(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	for y in height:
 		for x in width:
 			image.set_pixel(x,y,Color(randf(),randf(),randf(),randf()))
-	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 
 static func random_generate_horizontal(width:int,height:int)->Image:
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	for y in height:
 		# warning-ignore:integer_division
 		var w_half:=width/2
@@ -216,7 +211,6 @@ static func random_generate_horizontal(width:int,height:int)->Image:
 			image.set_pixel(width-x-1,y,c)
 		if width%2:
 			image.set_pixel(w_half+1,y,Color(randf(),randf(),randf(),randf()))
-	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 
@@ -228,14 +222,12 @@ static func random_generate_diagonal(width:int,height:int)->Image:
 	
 	var image:=Image.new()
 	image.create(width,height,false,Image.FORMAT_RGBA8)
-	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	for y in height:
 		for x in y:
 			var c:=Color(randf(),randf(),randf(),randf())
 			image.set_pixel(x,y,c)
 			image.set_pixel(y,x,c)
 		image.set_pixel(y,y,Color(randf(),randf(),randf(),randf()))
-	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 
@@ -243,8 +235,7 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 							pool_gray_image_object:Object,copy_bin_y_method:String)->Image:
 	var image:=Image.new()
 	var pixels:=width*height
-	image.create(width,height,false,Image.FORMAT_RGBA8)
-	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
+	image=Image.create(width,height,false,Image.FORMAT_RGBA8)
 	
 	for i in color_params.size():
 		var n:FastNoiseLite=noises[i]
@@ -270,7 +261,6 @@ func _perlin_generate_main(width:int,height:int,noises:Array,color_params:Array,
 		
 		for y in height:
 			self.call(copy_bin_y_method,image,bin,color,y)
-	false # image.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	return image
 
 

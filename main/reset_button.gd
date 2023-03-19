@@ -12,7 +12,7 @@ func _on_Main_ready():
 	for path in main.reset_parameters:
 		var colon_index:int=path.find(":")
 		var node:Node=main.get_node(path.left(colon_index))
-		initial_values.push_back([node,path.right(colon_index),main.get_node_property(path)])
+		initial_values.push_back([node,path.right(path.length()-colon_index-1),main.get_node_property(path)])
 
 
 func _on_ResetButton_pressed():

@@ -1,13 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://v84vgsydtjkg"]
 
-[ext_resource path="res://desktop/image_saver_file_dialog.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://desktop/image_saver_file_dialog.gd" id="1"]
 
 [node name="ImageSaverFileDialog" type="FileDialog"]
-offset_right = 315.0
-offset_bottom = 130.0
-resizable = true
 access = 2
-filters = PackedStringArray( "*.png", "*.exr", "*.tres", "*.res" )
-script = ExtResource( 1 )
+filters = PackedStringArray("*.png", "*.exr", "*.tres", "*.res")
+script = ExtResource("1")
 
 [connection signal="file_selected" from="." to="." method="_on_FileDialog_file_selected"]
