@@ -1,316 +1,250 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://cdvuqv6uo86e4"]
 
-[ext_resource path="res://color_edit/color_edit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://main/main.gd" type="Script" id=2]
-[ext_resource path="res://main/reset_button.gd" type="Script" id=3]
-[ext_resource path="res://main/pixel_arts_grid_container.gd" type="Script" id=4]
-[ext_resource path="res://main/symmetry_radio_button_group.tres" type="ButtonGroup" id=5]
-[ext_resource path="res://main/simplicity_h_slider.gd" type="Script" id=6]
-[ext_resource path="res://main/colors.gd" type="Script" id=7]
-[ext_resource path="res://main/pixel_arts_scroll_container.gd" type="Script" id=8]
-[ext_resource path="res://main/simplicity_spin_box.gd" type="Script" id=9]
-[ext_resource path="res://main/generate_button.gd" type="Script" id=10]
-[ext_resource path="res://main/add_icon.exr" type="Texture" id=11]
-[ext_resource path="res://main/background_texture_button/background_texture_button.tscn" type="PackedScene" id=12]
-[ext_resource path="res://main/checkerboard32x32.png" type="Texture" id=13]
-[ext_resource path="res://main/darkestblue_pixel.png" type="Texture" id=14]
-[ext_resource path="res://main/popup_messages.gd" type="Script" id=15]
-[ext_resource path="res://main/width_edit.gd" type="Script" id=16]
-[ext_resource path="res://main/height_edit.gd" type="Script" id=17]
-[ext_resource path="res://main/panel_scroll_container.gd" type="Script" id=18]
+[ext_resource type="PackedScene" uid="uid://bpg4fe6605cix" path="res://color_edit/color_edit.tscn" id="1"]
+[ext_resource type="Script" path="res://main/main.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://8nx15n0lumde" path="res://main/darkestgray_pixel.png" id="2_lkbo6"]
+[ext_resource type="Script" path="res://main/reset_button.gd" id="3"]
+[ext_resource type="Script" path="res://main/pixel_arts_grid_container.gd" id="4"]
+[ext_resource type="ButtonGroup" path="res://main/symmetry_radio_button_group.tres" id="5"]
+[ext_resource type="Script" path="res://main/simplicity_h_slider.gd" id="6"]
+[ext_resource type="Script" path="res://main/colors.gd" id="7"]
+[ext_resource type="Script" path="res://main/pixel_arts_scroll_container.gd" id="8"]
+[ext_resource type="Script" path="res://main/simplicity_spin_box.gd" id="9"]
+[ext_resource type="Script" path="res://main/generate_button.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://11ueo8apf2ye" path="res://main/add_icon.exr" id="11"]
+[ext_resource type="PackedScene" path="res://main/background_texture_button/background_texture_button.tscn" id="12"]
+[ext_resource type="Texture2D" uid="uid://cklkf18kmnqtp" path="res://main/checkerboard32x32.png" id="13"]
+[ext_resource type="Script" path="res://main/popup_messages.gd" id="15"]
+[ext_resource type="Script" path="res://main/width_edit.gd" id="16"]
+[ext_resource type="Script" path="res://main/height_edit.gd" id="17"]
+[ext_resource type="Script" path="res://main/panel_scroll_container.gd" id="18"]
 
-[sub_resource type="Theme" id=2]
-
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 14 )
-region_rect = Rect2( 0, 0, 1, 1 )
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trc03"]
+texture = ExtResource("2_lkbo6")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 2 )
-script = ExtResource( 2 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
 
 [node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource("StyleBoxTexture_trc03")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/HSplitContainer"]
-margin_right = 799.0
-margin_bottom = 600.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 791.0
-margin_bottom = 592.0
-script = ExtResource( 8 )
+layout_mode = 2
+script = ExtResource("8")
 
 [node name="PixelArts" type="GridContainer" parent="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer"]
-custom_constants/vseparation = 8
-custom_constants/hseparation = 8
-script = ExtResource( 4 )
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+script = ExtResource("4")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BackgroundPanel/HSplitContainer"]
-margin_left = 811.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 213, 0 )
-script = ExtResource( 18 )
+custom_minimum_size = Vector2(226, 0)
+layout_mode = 2
+script = ExtResource("18")
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer"]
-margin_right = 213.0
-margin_bottom = 600.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 206.0
-margin_bottom = 593.0
-custom_constants/margin_right = 4
-custom_constants/margin_top = 4
-custom_constants/margin_left = 4
-custom_constants/margin_bottom = 4
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 195.0
-margin_bottom = 582.0
-custom_constants/separation = 16
+layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="GenerateButton" type="Button" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 191.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "Generate"
-script = ExtResource( 10 )
+script = ExtResource("10")
 
 [node name="Quantity" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 36.0
-margin_right = 191.0
-margin_bottom = 60.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity"]
-margin_top = 5.0
-margin_right = 59.0
-margin_bottom = 19.0
+layout_mode = 2
 text = "Quantity:"
 
 [node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Quantity"]
-margin_left = 63.0
-margin_right = 137.0
-margin_bottom = 24.0
+layout_mode = 2
 min_value = 1.0
 value = 16.0
 allow_greater = true
 
 [node name="Size" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 76.0
-margin_right = 191.0
-margin_bottom = 174.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size"]
-margin_right = 191.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Size:"
 
 [node name="MarginContainer" type="MarginContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size"]
-margin_top = 18.0
-margin_right = 191.0
-margin_bottom = 98.0
-custom_constants/margin_left = 16
+layout_mode = 2
+theme_override_constants/margin_left = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer"]
-margin_left = 16.0
-margin_right = 191.0
-margin_bottom = 80.0
+layout_mode = 2
 
 [node name="Edit" type="GridContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer"]
-margin_right = 175.0
-margin_bottom = 52.0
+layout_mode = 2
 columns = 2
 
 [node name="WidthLabel" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit"]
-margin_top = 5.0
-margin_right = 46.0
-margin_bottom = 19.0
+layout_mode = 2
 text = "Width:"
 
 [node name="WidthEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit"]
-margin_left = 50.0
-margin_right = 124.0
-margin_bottom = 24.0
+layout_mode = 2
 min_value = 1.0
 max_value = 256.0
 value = 16.0
 exp_edit = true
-script = ExtResource( 16 )
+script = ExtResource("16")
 pair_nodepath = NodePath("../HeightEdit")
 
 [node name="HeightLabel" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit"]
-margin_top = 33.0
-margin_right = 46.0
-margin_bottom = 47.0
+layout_mode = 2
 text = "Height:"
 
 [node name="HeightEdit" type="SpinBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit"]
-margin_left = 50.0
-margin_top = 28.0
-margin_right = 124.0
-margin_bottom = 52.0
+layout_mode = 2
 min_value = 1.0
 max_value = 256.0
 value = 16.0
 exp_edit = true
-script = ExtResource( 17 )
+script = ExtResource("17")
 pair_nodepath = NodePath("../WidthEdit")
 
 [node name="KeepAspectRatio" type="CheckBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer"]
-margin_top = 56.0
-margin_right = 175.0
-margin_bottom = 80.0
+layout_mode = 2
 text = "Keep aspect ratio"
 
 [node name="Symmetry" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 190.0
-margin_right = 191.0
-margin_bottom = 288.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry"]
-margin_right = 191.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Symmetry:"
 
 [node name="None" type="CheckBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry"]
-margin_top = 18.0
-margin_right = 191.0
-margin_bottom = 42.0
-pressed = true
-group = ExtResource( 5 )
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("5")
 text = "None"
 
 [node name="Horizontal" type="CheckBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry"]
-margin_top = 46.0
-margin_right = 191.0
-margin_bottom = 70.0
-group = ExtResource( 5 )
+layout_mode = 2
+button_group = ExtResource("5")
 text = "Horizontal"
 
 [node name="Diagonal" type="CheckBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Symmetry"]
-margin_top = 74.0
-margin_right = 191.0
-margin_bottom = 98.0
-group = ExtResource( 5 )
+layout_mode = 2
+button_group = ExtResource("5")
 text = "Diagonal"
 
-[node name="NoisePeriod" type="GridContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 304.0
-margin_right = 191.0
-margin_bottom = 348.0
+[node name="NoiseFrequency" type="GridContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
-[node name="Edit" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod"]
-margin_right = 164.0
-margin_bottom = 24.0
+[node name="Edit" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency"]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit"]
-margin_top = 5.0
-margin_right = 86.0
-margin_bottom = 19.0
-text = "Noise period:"
+[node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/Edit"]
+layout_mode = 2
+text = "Noise frequency:"
 
-[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit"]
-margin_left = 90.0
-margin_right = 164.0
-margin_bottom = 24.0
-min_value = 0.1
-max_value = 32.0
-step = 0.1
-value = 10.0
-script = ExtResource( 9 )
+[node name="SpinBox" type="SpinBox" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/Edit"]
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.1
+script = ExtResource("9")
 
-[node name="HSlider" type="HSlider" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod"]
-margin_top = 28.0
-margin_right = 164.0
-margin_bottom = 44.0
-min_value = 0.1
-max_value = 32.0
-step = 0.1
-value = 10.0
-script = ExtResource( 6 )
+[node name="HSlider" type="HSlider" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency"]
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.1
+script = ExtResource("6")
 
 [node name="Colors" type="VBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 364.0
-margin_right = 191.0
-margin_bottom = 432.0
-script = ExtResource( 7 )
+layout_mode = 2
+script = ExtResource("7")
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors"]
-margin_right = 191.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Colors:"
 
-[node name="ColorEdit" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors" instance=ExtResource( 1 )]
-margin_top = 18.0
-margin_right = 191.0
-margin_bottom = 42.0
+[node name="ColorEdit" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors" instance=ExtResource("1")]
+layout_mode = 2
 removable = false
 
 [node name="AddButton" type="Button" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors"]
-margin_top = 46.0
-margin_right = 191.0
-margin_bottom = 68.0
+layout_mode = 2
 text = "Add new color"
-icon = ExtResource( 11 )
+icon = ExtResource("11")
 
 [node name="ResetButton" type="Button" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 448.0
-margin_right = 191.0
-margin_bottom = 468.0
+layout_mode = 2
 text = "Reset"
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Background" type="HBoxContainer" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 484.0
-margin_right = 191.0
-margin_bottom = 516.0
-custom_constants/separation = 16
+layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background"]
-margin_top = 9.0
-margin_right = 78.0
-margin_bottom = 23.0
+layout_mode = 2
 text = "Background:"
 
-[node name="PanelTextureButton" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource( 12 )]
-margin_left = 94.0
-margin_right = 126.0
-texture_normal = ExtResource( 14 )
+[node name="PanelTextureButton" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource("12")]
+layout_mode = 2
+texture_normal = ExtResource("2_lkbo6")
+ignore_texture_size = true
+stretch_mode = 1
 
-[node name="CheckerboardTextureButton" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource( 12 )]
-margin_left = 142.0
-margin_right = 174.0
-texture_normal = ExtResource( 13 )
+[node name="CheckerboardTextureButton" parent="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background" instance=ExtResource("12")]
+layout_mode = 2
+texture_normal = ExtResource("13")
 
 [node name="PopupMessages" type="VBoxContainer" parent="BackgroundPanel"]
-margin_right = 799.0
-margin_bottom = 600.0
+layout_mode = 0
+offset_right = 799.0
+offset_bottom = 600.0
 mouse_filter = 2
 alignment = 2
-script = ExtResource( 15 )
+script = ExtResource("15")
 
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized" flags=6]
 [connection signal="ready" from="." to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_Main_ready" flags=6]
@@ -318,7 +252,6 @@ script = ExtResource( 15 )
 [connection signal="pixel_scale_changed" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_ScrollContainer_pixel_scale_changed"]
 [connection signal="resized" from="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_on_PixelArtsContainer_resized"]
 [connection signal="resized" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer" to="BackgroundPanel/HSplitContainer/ScrollContainer" method="_on_PanelContainer_resized"]
-[connection signal="column_update_request" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/MarginContainer/ScrollContainer/PixelArts" method="_update_columns"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/GenerateButton" method="_on_GenerateButton_pressed"]
 [connection signal="ready" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit" method="_on_WidthEdit_ready" flags=6]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit" method="_on_WidthEdit_value_changed"]
@@ -326,10 +259,10 @@ script = ExtResource( 15 )
 [connection signal="ready" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit" method="_on_HeightEdit_ready" flags=6]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit" method="_on_HeightEdit_value_changed"]
 [connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/HeightEdit" method="_on_HeightEdit_value_changed"]
-[connection signal="changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/HSlider" method="_on_SpinBox_changed"]
-[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/HSlider" method="_on_SpinBox_value_changed"]
-[connection signal="changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/HSlider" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox" method="_on_HSlider_changed"]
-[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/HSlider" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoisePeriod/Edit/SpinBox" method="_on_HSlider_value_changed"]
+[connection signal="changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/HSlider" method="_on_SpinBox_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/Edit/SpinBox" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/HSlider" method="_on_SpinBox_value_changed"]
+[connection signal="changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/HSlider" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/Edit/SpinBox" method="_on_HSlider_changed"]
+[connection signal="value_changed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/HSlider" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/NoiseFrequency/Edit/SpinBox" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors/AddButton" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Colors" method="_on_AddButton_pressed"]
 [connection signal="pressed" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton" method="_on_ResetButton_pressed"]
 [connection signal="change_background_request" from="BackgroundPanel/HSplitContainer/ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Background/PanelTextureButton" to="." method="_on_change_background_requested"]

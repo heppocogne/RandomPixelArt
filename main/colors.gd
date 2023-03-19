@@ -1,9 +1,9 @@
-tool
+@tool
 extends VBoxContainer
 
 const _scene_ColorEdit:PackedScene=preload("res://color_edit/color_edit.tscn")
 
-var color_parameters:Array setget set_color_parameters,get_color_parameters
+var color_parameters:Array: get = get_color_parameters, set = set_color_parameters
 var color_rects:Array
 
 
@@ -22,7 +22,7 @@ func add_color_edit(ce:ColorEdit):
 		add_child(ce)
 		move_child(ce,get_child_count()-2)
 	# warning-ignore:return_value_discarded
-	ce.connect("remove_button_pressed",self,"_on_ColorEdit_remove_button_pressed",[],CONNECT_ONESHOT)
+	ce.connect("remove_button_pressed", Callable(self, "_on_ColorEdit_remove_button_pressed").bind(), CONNECT_ONE_SHOT)
 	color_rects.push_back(ce)
 
 
@@ -34,7 +34,7 @@ func remove_color_edit(ce:ColorEdit):
 func set_color_parameters(params:Array):
 	if color_rects.size()<params.size():
 		while color_rects.size()<params.size():
-			add_color_edit(_scene_ColorEdit.instance())
+			add_color_edit(_scene_ColorEdit.instantiate())
 	elif params.size()<color_rects.size():
 		while params.size()<color_rects.size():
 			remove_color_edit(color_rects.back())
@@ -53,7 +53,7 @@ func get_color_parameters()->Array:
 
 
 func _on_AddButton_pressed():
-	add_color_edit(_scene_ColorEdit.instance())
+	add_color_edit(_scene_ColorEdit.instantiate())
 
 
 func _on_ColorEdit_remove_button_pressed(ref:ColorEdit):

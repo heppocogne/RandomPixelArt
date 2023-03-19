@@ -1,7 +1,7 @@
-tool
+@tool
 extends SpinBox
 
-onready var h_slider:HSlider=$"../../HSlider"
+@onready var h_slider:HSlider=$"../../HSlider"
 
 
 func _ready():
@@ -9,7 +9,7 @@ func _ready():
 
 
 func _on_HSlider_changed():
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		h_slider=$"../../HSlider"
 	
 	if min_value!=h_slider.min_value:
@@ -26,7 +26,7 @@ func _on_HSlider_changed():
 
 
 func _on_HSlider_value_changed(new_value:float):
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		h_slider=$"../../HSlider"
 	
 	if value!=new_value:

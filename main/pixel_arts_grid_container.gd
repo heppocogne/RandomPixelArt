@@ -1,12 +1,12 @@
 extends GridContainer
 
-var h_separation:int=get_constant("hseparation")
+var h_separation:int=get_theme_constant("h_separation")
 #var v_separation:int=get_constant("vseparation")
 var last_saved_folder:String
 var last_saved_file:String
 var pixel_arts:Array
 
-onready var width_edit:SpinBox=$"../../../ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
+@onready var width_edit:SpinBox=$"../../../ScrollContainer/PanelContainer/MarginContainer/VBoxContainer/Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
 
 
 func _init():
@@ -15,14 +15,14 @@ func _init():
 
 func _update_columns(width:int,scale:float):
 	# warning-ignore:narrowing_conversion
-	columns=max(int((get_parent().rect_size.x+h_separation)/(width*scale+h_separation)),1)
+	columns=max(int((get_parent().size.x+h_separation)/(width*scale+h_separation)),1)
 
 
 func _on_ScrollContainer_pixel_scale_changed(scale:float):
 	# warning-ignore:narrowing_conversion
 	_update_columns(width_edit.value,scale)
 	for p in pixel_arts:
-		p.rect_min_size=get_parent().pixel_scale*p.texture.get_size()
+		p.custom_minimum_size=get_parent().pixel_scale*p.texture.get_size()
 
 
 func _on_PixelArtsContainer_resized():

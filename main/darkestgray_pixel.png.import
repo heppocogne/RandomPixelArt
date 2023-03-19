@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwk187mgcdu0v"
-path="res://.godot/imported/remove_icon.exr-fe298e9881998eab6e43636aae532a3b.ctex"
+uid="uid://8nx15n0lumde"
+path="res://.godot/imported/darkestgray_pixel.png-07a9fa495faa7ac5914d17f40c29651a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://color_edit/remove_icon.exr"
-dest_files=["res://.godot/imported/remove_icon.exr-fe298e9881998eab6e43636aae532a3b.ctex"]
+source_file="res://main/darkestgray_pixel.png"
+dest_files=["res://.godot/imported/darkestgray_pixel.png-07a9fa495faa7ac5914d17f40c29651a.ctex"]
 
 [params]
 

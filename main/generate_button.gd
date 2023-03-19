@@ -6,16 +6,16 @@ const _scene_pixel_art_view:PackedScene=preload("res://pixel_art_view/pixel_art_
 
 var pixel_art_generator:PixelArtGenerator
 
-onready var pixel_art_container:GridContainer=$"../../../../../MarginContainer/ScrollContainer/PixelArts"
-onready var count_spinbox:SpinBox=$"../Quantity/SpinBox"
-onready var width_edit:SpinBox=$"../Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
-onready var height_edit:SpinBox=$"../Size/MarginContainer/VBoxContainer/Edit/HeightEdit"
-onready var none_button:CheckBox=$"../Symmetry/None"
-onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
-onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
-onready var noise_period_edit:SpinBox=$"../NoisePeriod/Edit/SpinBox"
-onready var colors:VBoxContainer=$"../Colors"
-onready var popup_messages:VBoxContainer=$"../../../../../../PopupMessages"
+@onready var pixel_art_container:GridContainer=$"../../../../../MarginContainer/ScrollContainer/PixelArts"
+@onready var count_spinbox:SpinBox=$"../Quantity/SpinBox"
+@onready var width_edit:SpinBox=$"../Size/MarginContainer/VBoxContainer/Edit/WidthEdit"
+@onready var height_edit:SpinBox=$"../Size/MarginContainer/VBoxContainer/Edit/HeightEdit"
+@onready var none_button:CheckBox=$"../Symmetry/None"
+@onready var horizontal_button:CheckBox=$"../Symmetry/Horizontal"
+@onready var diagonal_button:CheckBox=$"../Symmetry/Diagonal"
+@onready var noise_frequency_edit:SpinBox=$"../NoiseFrequency/Edit/SpinBox"
+@onready var colors:VBoxContainer=$"../Colors"
+@onready var popup_messages:VBoxContainer=$"../../../../../../PopupMessages"
 
 
 func _init():
@@ -30,29 +30,27 @@ func _on_GenerateButton_pressed():
 	var texture_rect_size:Vector2=pixel_art_container.get_parent().pixel_scale*Vector2(width_edit.value,height_edit.value)
 	for i in count_spinbox.value:
 		var image:Image
-		var pixel_art_view:=_scene_pixel_art_view.instance()
+		var pixel_art_view:=_scene_pixel_art_view.instantiate()
 		var color_params:Array=colors.get_color_parameters()
 		for _i in color_params.size():
-			var noise:=OpenSimplexNoise.new()
+			var noise:=FastNoiseLite.new()
 			noise.seed=randi()
-			noise.period=noise_period_edit.value
+			noise.frequency=noise_frequency_edit.value
+			noise.fractal_type=FastNoiseLite.FRACTAL_NONE
 			pixel_art_view.noises.push_back(noise)
-		if none_button.pressed:
-			# warning-ignore:narrowing_conversion
+		if none_button.button_pressed:
 			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
-		elif horizontal_button.pressed:
-			# warning-ignore:narrowing_conversion
+		elif horizontal_button.button_pressed:
 			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate_horizontal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
-		elif diagonal_button.pressed:
-			# warning-ignore:narrowing_conversion
+		elif diagonal_button.button_pressed:
 			# warning-ignore:narrowing_conversion
 			image=pixel_art_generator.perlin_generate_diagonal(width_edit.value,height_edit.value,pixel_art_view.noises,color_params)
 		var texture:=ImageTexture.new()
-		texture.create_from_image(image,3)
+		texture=ImageTexture.create_from_image(image) #,3
 		pixel_art_view.texture=texture
-		pixel_art_view.rect_min_size=texture_rect_size
+		pixel_art_view.custom_minimum_size=texture_rect_size
 		
 		pixel_art_container.pixel_arts.push_back(pixel_art_view)
 		pixel_art_container.add_child(pixel_art_view)

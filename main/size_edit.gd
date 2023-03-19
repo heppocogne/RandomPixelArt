@@ -1,10 +1,10 @@
 class_name SizeEdit
 extends SpinBox
 
-export var pair_nodepath:NodePath
+@export var pair_nodepath:NodePath
 var aspect_ratio:float
-onready var _pair_node:SpinBox=get_node(pair_nodepath)
-onready var keep_aspect_ratio:CheckBox=$"../../KeepAspectRatio"
+@onready var _pair_node:SpinBox=get_node(pair_nodepath)
+@onready var keep_aspect_ratio:CheckBox=$"../../KeepAspectRatio"
 
 
 # warning-ignore:unused_argument
