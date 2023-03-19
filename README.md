@@ -1,5 +1,8 @@
 # RandomPixelArt
-A tool that generate pixel art randomly using [perlin noise](https://en.wikipedia.org/wiki/Perlin_noise).
+A tool that generate pixel art randomly using [perlin noise](https://en.wikipedia.org/wiki/Perlin_noise).  
+
+[itch.io link](https://heppocogne.itch.io/random-pixel-art-generator)  
+
 ![image](https://user-images.githubusercontent.com/83043568/226149370-86d98529-1bab-4708-aad1-53920dc3d434.png)
 
 ## Usage
