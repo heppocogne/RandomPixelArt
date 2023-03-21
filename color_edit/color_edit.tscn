@@ -25,14 +25,21 @@ layout_mode = 2
 script = ExtResource("2")
 
 [node name="Window" type="Window" parent="ColorRect"]
+title = "Color picker"
 visible = false
+unresizable = true
+popup_window = true
 script = ExtResource("3")
 
-[node name="ColorPicker" type="ColorPicker" parent="ColorRect/Window"]
-offset_left = 120.0
-offset_top = 64.0
-offset_right = 372.0
-offset_bottom = 526.0
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorPicker" type="ColorPicker" parent="ColorRect/Window/ScrollContainer"]
+layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
@@ -45,7 +52,8 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = ExtResource("4")
 
-[connection signal="close_requested" from="ColorRect/Window" to="ColorRect" method="_on_window_close_requested"]
 [connection signal="close_requested" from="ColorRect/Window" to="ColorRect/Window" method="_on_close_requested"]
-[connection signal="resized" from="ColorRect/Window/ColorPicker" to="ColorRect/Window" method="_on_ColorPicker_resized"]
+[connection signal="focus_exited" from="ColorRect/Window" to="ColorRect/Window" method="_on_focus_exited"]
+[connection signal="color_changed" from="ColorRect/Window/ScrollContainer/ColorPicker" to="ColorRect" method="_on_color_picker_color_changed"]
+[connection signal="resized" from="ColorRect/Window/ScrollContainer/ColorPicker" to="ColorRect/Window" method="_on_ColorPicker_resized"]
 [connection signal="pressed" from="CenterContainer/RemoveButton" to="." method="_on_RemoveButton_pressed"]
